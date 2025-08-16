@@ -20,41 +20,50 @@ const GridPages: React.FC<GridPagesProps> = ({
   activeKey,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [pageWidth, setPageWidth] = useState(0);
-  const [pageHeight, setPageHeight] = useState(0);
+  const [pageWidth, setPageWidth] = useState(window.innerWidth);
+  const [pageHeight, setPageHeight] = useState(window.innerHeight);
   const [viewerLeft, setViewerLeft] = useState(0);
   const [viewerTop, setViewerTop] = useState(0);
 
   useEffect(() => {
-    setPageWidth(window.innerWidth);
-    setPageHeight(window.innerHeight);
-    setIsLoading(false);
+    const handleResize = () => {
+      setPageWidth(window.innerWidth);
+      setPageHeight(window.innerHeight);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  useEffect(() => {
+    if (pageWidth > 0 && pageHeight > 0) setIsLoading(false);
+  }, [pageWidth, pageHeight]);
 
   useEffect(() => {
     if (activeKey) {
       const foundPage = gridPages.find((page) => page.key === activeKey);
       if (foundPage) {
-        console.log(foundPage);
         setViewerLeft(foundPage.columnIndex * pageWidth);
         setViewerTop(foundPage.rowIndex * pageHeight);
       }
     }
-  }, [activeKey]);
+  }, [pageWidth, pageHeight, activeKey]);
 
   return (
     <>
-      <main style={{ position: "relative", overflow: "hidden" }}>
+      <main>
         <section
           style={{
             width: pageWidth * columns,
             height: pageHeight * rows,
             transform: `translate(-${viewerLeft}px, -${viewerTop}px)`,
-            transition: "transform 0.3s ease-in-out",
+            transition: "transform 1s ease-in-out",
+            position: "relative",
           }}
         >
           {gridPages.map((page) => (
-            <div
+            <section
               key={`${page.rowIndex}-${page.columnIndex}`}
               style={{
                 position: "absolute",
@@ -62,10 +71,11 @@ const GridPages: React.FC<GridPagesProps> = ({
                 left: page.columnIndex * pageWidth,
                 width: pageWidth,
                 height: pageHeight,
+                overflow: "hidden",
               }}
             >
               {page.content}
-            </div>
+            </section>
           ))}
         </section>
         {isLoading && (

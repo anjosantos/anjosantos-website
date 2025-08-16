@@ -5,7 +5,13 @@ const Page: React.FC<{ children?: React.ReactNode; background?: string }> = ({
   background,
 }) => {
   return (
-    <section style={{ background, width: "100vw", height: "100vh" }}>
+    <section
+      style={{
+        background,
+        width: "100%",
+        height: "100%",
+      }}
+    >
       {children}
     </section>
   );
