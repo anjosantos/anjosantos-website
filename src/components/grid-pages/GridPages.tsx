@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 export type GridPage = {
+  key: string;
   rowIndex: number;
   columnIndex: number;
   content: React.ReactNode;
@@ -9,12 +10,20 @@ type GridPagesProps = {
   rows: number;
   columns: number;
   gridPages: GridPage[];
+  activeKey: string;
 };
 
-const GridPages: React.FC<GridPagesProps> = ({ rows, columns, gridPages }) => {
+const GridPages: React.FC<GridPagesProps> = ({
+  rows,
+  columns,
+  gridPages,
+  activeKey,
+}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [pageWidth, setPageWidth] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
+  const [viewerLeft, setViewerLeft] = useState(0);
+  const [viewerTop, setViewerTop] = useState(0);
 
   useEffect(() => {
     setPageWidth(window.innerWidth);
@@ -22,11 +31,27 @@ const GridPages: React.FC<GridPagesProps> = ({ rows, columns, gridPages }) => {
     setIsLoading(false);
   }, []);
 
+  useEffect(() => {
+    if (activeKey) {
+      const foundPage = gridPages.find((page) => page.key === activeKey);
+      if (foundPage) {
+        console.log(foundPage);
+        setViewerLeft(foundPage.columnIndex * pageWidth);
+        setViewerTop(foundPage.rowIndex * pageHeight);
+      }
+    }
+  }, [activeKey]);
+
   return (
     <>
       <main style={{ position: "relative", overflow: "hidden" }}>
         <section
-          style={{ width: pageWidth * columns, height: pageHeight * rows }}
+          style={{
+            width: pageWidth * columns,
+            height: pageHeight * rows,
+            transform: `translate(-${viewerLeft}px, -${viewerTop}px)`,
+            transition: "transform 0.3s ease-in-out",
+          }}
         >
           {gridPages.map((page) => (
             <div
