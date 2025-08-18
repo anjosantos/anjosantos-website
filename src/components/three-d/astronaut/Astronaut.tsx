@@ -20,14 +20,12 @@ const Astronaut = (props: any) => {
   return (
     <group ref={ref}>
       <mesh
-        scale={1}
         receiveShadow
         castShadow
         //@ts-ignore
         geometry={nodes.Astronaut_mesh.geometry}
         //@ts-ignore
         material={materials.Astronaut_mat}
-        rotation={[0.3, Math.PI / 1.6, 0]}
         {...props}
       />
     </group>
