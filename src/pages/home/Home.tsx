@@ -1,11 +1,11 @@
 import React, { useState, useEffect, type JSX } from "react";
 
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
+import { useGLTF, Environment } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-import { GridPages, FloatingWrapper } from "@/components";
-import { Star, Shoe } from "@/components/three-d";
+import { GridPages } from "@/components";
+import { Star } from "@/components/three-d";
 import {
   HomePage,
   ProjectsPage,
@@ -15,6 +15,7 @@ import {
 } from "@/pages/grid-pages";
 
 useGLTF.preload("/nike.glb");
+useGLTF.preload("/astronaut.glb");
 
 const Home: React.FC = () => {
   const [activeKey, setActiveKey] = useState<string>(PAGE_KEYS.HOME);
@@ -62,9 +63,8 @@ const Home: React.FC = () => {
             files="/nebulae2.hdr"
             background
             environmentIntensity={0.5}
-            backgroundIntensity={1}
+            backgroundIntensity={2}
           />
-
           <ambientLight intensity={0.7} />
           <spotLight
             intensity={0.5}
@@ -73,11 +73,6 @@ const Home: React.FC = () => {
             position={[10, 15, -5]}
             castShadow
           />
-          <OrbitControls makeDefault />
-          <group>
-            <Shoe rotation={[0.3, Math.PI / 1.6, 0]} />
-          </group>
-
           {stars.map((star) => (
             <Star key={star.key} />
           ))}
@@ -92,18 +87,6 @@ const Home: React.FC = () => {
         </Canvas>
       </section>
       <GridPages rows={5} columns={5} gridPages={pages} activeKey={activeKey} />
-      <FloatingWrapper
-        style={{
-          color: "red",
-          position: "absolute",
-          display: "inline-block",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <span>ANJOSANTOS.DEV</span>
-      </FloatingWrapper>
     </>
   );
 };
