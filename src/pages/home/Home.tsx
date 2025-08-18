@@ -1,9 +1,10 @@
 import React, { useState, useEffect, type JSX } from "react";
 
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, Environment } from "@react-three/drei";
+import { useGLTF, Environment, useProgress } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
+import { useLoading } from "@/providers";
 import { GridPages } from "@/components";
 import { Star } from "@/components/three-d";
 import {
@@ -14,17 +15,25 @@ import {
   PAGE_KEYS,
 } from "@/pages/grid-pages";
 
-useGLTF.preload("/nike.glb");
 useGLTF.preload("/astronaut.glb");
 
 const Home: React.FC = () => {
+  const { loadingContext } = useLoading();
+  const { setIsLoading } = loadingContext;
   const [activeKey, setActiveKey] = useState<string>(PAGE_KEYS.HOME);
   const [stars, setStars] = useState<JSX.Element[]>([]);
+  const { progress } = useProgress();
 
   useEffect(() => {
     const newStars = Array.from({ length: 200 }, (_, i) => <Star key={i} />);
     setStars(newStars);
   }, []);
+
+  useEffect(() => {
+    if (progress === 100) {
+      setIsLoading(false);
+    }
+  }, [progress]);
 
   const pages = [
     {

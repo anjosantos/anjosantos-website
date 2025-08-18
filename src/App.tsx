@@ -1,11 +1,19 @@
-import { useState } from "react";
 import AppRoutes from "./routes";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+import { useLoading } from "@/providers";
+import { FullLoader } from "@/components";
 
-  return <AppRoutes />;
-}
+const App = () => {
+  const { loadingContext } = useLoading();
+  const { isLoading } = loadingContext;
+
+  return (
+    <>
+      <AppRoutes />
+      <FullLoader isLoading={isLoading} />
+    </>
+  );
+};
 
 export default App;

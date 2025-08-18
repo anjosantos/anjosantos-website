@@ -4,7 +4,6 @@ import { GridPage } from "@/components";
 import { PAGE_KEYS } from "../pageKeys";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import { Astronaut } from "@/components/three-d";
 
 type HomeProps = {
@@ -30,7 +29,6 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
               decay={0}
               intensity={Math.PI}
             />
-            <OrbitControls makeDefault />
             <Astronaut scale={1.1} position={[-1.5, -2.2, 0]} />
           </Canvas>
         </section>
