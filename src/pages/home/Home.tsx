@@ -1,86 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, type JSX } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-import { GridPages, GridPage, FloatingWrapper } from "@/components";
-import { Star, Shoe, Box } from "@/components/three-d";
+import { GridPages, FloatingWrapper } from "@/components";
+import { Star, Shoe } from "@/components/three-d";
+import {
+  HomePage,
+  ProjectsPage,
+  AboutPage,
+  ContactPage,
+  PAGE_KEYS,
+} from "@/pages/grid-pages";
 
 useGLTF.preload("/nike.glb");
 
 const Home: React.FC = () => {
-  const [activeKey, setActiveKey] = useState<string>("page-1");
+  const [activeKey, setActiveKey] = useState<string>(PAGE_KEYS.HOME);
+  const [stars, setStars] = useState<JSX.Element[]>([]);
+
+  useEffect(() => {
+    const newStars = Array.from({ length: 200 }, (_, i) => <Star key={i} />);
+    setStars(newStars);
+  }, []);
+
   const pages = [
     {
-      key: "page-1",
-      rowIndex: 5,
-      columnIndex: 6,
-      content: (
-        <GridPage>
-          Page 1
-          <button onClick={() => setActiveKey("page-2")}>Go to Page 2</button>
-          <button onClick={() => setActiveKey("page-3")}>Go to Page 3</button>
-          <button onClick={() => setActiveKey("page-4")}>Go to Page 4</button>
-        </GridPage>
-      ),
+      key: PAGE_KEYS.HOME,
+      rowIndex: 2,
+      columnIndex: 2,
+      content: <HomePage setActiveKey={setActiveKey} />,
     },
     {
-      key: "page-2",
-      rowIndex: 0,
+      key: PAGE_KEYS.PROJECTS,
+      rowIndex: 3,
       columnIndex: 0,
-      content: (
-        <GridPage>
-          Page 2
-          <button onClick={() => setActiveKey("page-1")}>Go to Page 1</button>
-          <button onClick={() => setActiveKey("page-3")}>Go to Page 3</button>
-          <button onClick={() => setActiveKey("page-4")}>Go to Page 4</button>
-        </GridPage>
-      ),
+      content: <ProjectsPage setActiveKey={setActiveKey} />,
     },
     {
-      key: "page-3",
-      rowIndex: 8,
+      key: PAGE_KEYS.ABOUT,
+      rowIndex: 5,
       columnIndex: 5,
-      content: (
-        <GridPage>
-          Page 3
-          <button onClick={() => setActiveKey("page-1")}>Go to Page 1</button>
-          <button onClick={() => setActiveKey("page-2")}>Go to Page 2</button>
-          <button onClick={() => setActiveKey("page-4")}>Go to Page 4</button>
-          <Canvas>
-            <ambientLight intensity={Math.PI / 2} />
-            <spotLight
-              position={[10, 10, 10]}
-              angle={0.15}
-              penumbra={1}
-              decay={0}
-              intensity={Math.PI}
-            />
-            <pointLight
-              position={[-10, -10, -10]}
-              decay={0}
-              intensity={Math.PI}
-            />
-            <OrbitControls makeDefault />
-            <Box position={[-3.2, 0, 0]} />
-            <Box position={[3.2, 0, 0]} />
-          </Canvas>
-        </GridPage>
-      ),
+      content: <AboutPage setActiveKey={setActiveKey} />,
     },
     {
-      key: "page-4",
-      rowIndex: 4,
-      columnIndex: 1,
-      content: (
-        <GridPage>
-          Page 4
-          <button onClick={() => setActiveKey("page-1")}>Go to Page 1</button>
-          <button onClick={() => setActiveKey("page-2")}>Go to Page 2</button>
-          <button onClick={() => setActiveKey("page-3")}>Go to Page 3</button>
-        </GridPage>
-      ),
+      key: PAGE_KEYS.CONTACT,
+      rowIndex: 0,
+      columnIndex: 4,
+      content: <ContactPage setActiveKey={setActiveKey} />,
     },
   ];
 
@@ -110,8 +78,8 @@ const Home: React.FC = () => {
             <Shoe rotation={[0.3, Math.PI / 1.6, 0]} />
           </group>
 
-          {Array.from({ length: 200 }).map((_, i) => (
-            <Star key={i} />
+          {stars.map((star) => (
+            <Star key={star.key} />
           ))}
           <EffectComposer>
             <Bloom
@@ -123,20 +91,19 @@ const Home: React.FC = () => {
           </EffectComposer>
         </Canvas>
       </section>
+      <GridPages rows={5} columns={5} gridPages={pages} activeKey={activeKey} />
       <FloatingWrapper
         style={{
-          marginTop: 500,
-          marginLeft: "50%",
-          padding: 500,
           color: "red",
-          position: "relative",
-          transform: "translate(-50%, -50%)",
+          position: "absolute",
           display: "inline-block",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
         <span>ANJOSANTOS.DEV</span>
       </FloatingWrapper>
-      <GridPages rows={8} columns={5} gridPages={pages} activeKey={activeKey} />
     </>
   );
 };

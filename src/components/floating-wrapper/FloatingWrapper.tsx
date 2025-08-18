@@ -14,7 +14,7 @@ const FloatingWrapper: React.FC<FloatingWrapperProps> = ({
   className,
 }) => {
   return (
-    <div
+    <section
       className={className}
       style={{
         ...style,
@@ -22,7 +22,7 @@ const FloatingWrapper: React.FC<FloatingWrapperProps> = ({
       }}
     >
       {children}
-    </div>
+    </section>
   );
 };
 

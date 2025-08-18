@@ -1,20 +1,20 @@
 @keyframes float {
   0% {
-    transform: translate(-50%, -50%) translate(0px, 0px) skew(0deg, 0deg);
+    transform: translate(0px, 0px) skew(0deg, 0deg);
   }
   20% {
-    transform: translate(-50%, -50%) translate(-10px, -10px) skew(-3deg, 2deg);
+    transform: translate(-10px, -10px) skew(-3deg, 2deg);
   }
   40% {
-    transform: translate(-50%, -50%) translate(12px, -18px) skew(2deg, -4deg);
+    transform: translate(12px, -18px) skew(2deg, -4deg);
   }
   60% {
-    transform: translate(-50%, -50%) translate(-8px, 15px) skew(-2deg, 3deg);
+    transform: translate(-8px, 15px) skew(-2deg, 3deg);
   }
   80% {
-    transform: translate(-50%, -50%) translate(10px, 10px) skew(3deg, -2deg);
+    transform: translate(10px, 10px) skew(3deg, -2deg);
   }
   100% {
-    transform: translate(-50%, -50%) translate(0px, 0px) skew(0deg, 0deg);
+    transform: translate(0px, 0px) skew(0deg, 0deg);
   }
 }
