@@ -1,7 +1,7 @@
 import React from "react";
 
 import { GridPage } from "@/components";
-import { PAGE_KEYS } from "../pageKeys";
+import { PageKeys } from "../pageKeys";
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -15,7 +15,7 @@ const Projects: React.FC<ProjectsProps> = ({ setActiveKey }) => {
   return (
     <GridPage>
       <section>
-        <button onClick={() => setActiveKey(PAGE_KEYS.HOME)}>Back</button>
+        <button onClick={() => setActiveKey(PageKeys.HOME)}>Back</button>
         <h1>Sample Projects</h1>
         <p>This is the Projects page of the application.</p>
       </section>

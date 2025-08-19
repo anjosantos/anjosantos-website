@@ -1,7 +1,7 @@
 import React from "react";
 
 import { GridPage } from "@/components";
-import { PAGE_KEYS } from "../pageKeys";
+import { PageKeys } from "../pageKeys";
 
 import { Canvas } from "@react-three/fiber";
 import { Astronaut } from "@/components/three-d";
@@ -51,19 +51,19 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
           </button>
           <button
             className="menu-button active"
-            onClick={() => setActiveKey(PAGE_KEYS.PROJECTS)}
+            onClick={() => setActiveKey(PageKeys.PROJECTS)}
           >
             PROJECTS
           </button>
           <button
             className="menu-button active"
-            onClick={() => setActiveKey(PAGE_KEYS.ABOUT)}
+            onClick={() => setActiveKey(PageKeys.ABOUT)}
           >
             ABOUT
           </button>
           <button
             className="menu-button active"
-            onClick={() => setActiveKey(PAGE_KEYS.CONTACT)}
+            onClick={() => setActiveKey(PageKeys.CONTACT)}
           >
             CONTACT
           </button>

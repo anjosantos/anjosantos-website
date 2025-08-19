@@ -4,7 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment, useProgress } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-import { useLoading } from "@/providers";
+import { useLoading, usePage } from "@/providers";
 import { GridPages } from "@/components";
 import { Star } from "@/components/three-d";
 import {
@@ -12,7 +12,7 @@ import {
   ProjectsPage,
   AboutPage,
   ContactPage,
-  PAGE_KEYS,
+  PageKeys,
 } from "@/pages/grid-pages";
 
 useGLTF.preload("/astronaut.glb");
@@ -25,8 +25,9 @@ type ThreeJSCameraOptions = {
 const Home: React.FC = () => {
   const { loadingContext } = useLoading();
   const { setIsLoading } = loadingContext;
+  const { pageContext } = usePage();
+  const { activeKey, setActiveKey } = pageContext;
 
-  const [activeKey, setActiveKey] = useState<string>(PAGE_KEYS.HOME);
   const [cameraSettings, setCameraSettings] = useState<ThreeJSCameraOptions>({
     position: [0, 0, 4],
     fov: 75,
@@ -46,22 +47,22 @@ const Home: React.FC = () => {
   }, [progress]);
 
   useEffect(() => {
-    if (activeKey === PAGE_KEYS.HOME) {
+    if (activeKey === PageKeys.HOME) {
       setCameraSettings({
         position: [0, 0, 4],
         fov: 75,
       });
-    } else if (activeKey === PAGE_KEYS.PROJECTS) {
+    } else if (activeKey === PageKeys.PROJECTS) {
       setCameraSettings({
         position: [10, 0, 4],
         fov: 15,
       });
-    } else if (activeKey === PAGE_KEYS.ABOUT) {
+    } else if (activeKey === PageKeys.ABOUT) {
       setCameraSettings({
         position: [10, 0, 4],
         fov: 25,
       });
-    } else if (activeKey === PAGE_KEYS.CONTACT) {
+    } else if (activeKey === PageKeys.CONTACT) {
       setCameraSettings({
         position: [10, 10, 4],
         fov: 55,
@@ -71,25 +72,25 @@ const Home: React.FC = () => {
 
   const pages = [
     {
-      key: PAGE_KEYS.HOME,
+      key: PageKeys.HOME,
       rowIndex: 2,
       columnIndex: 2,
       content: <HomePage setActiveKey={setActiveKey} />,
     },
     {
-      key: PAGE_KEYS.PROJECTS,
+      key: PageKeys.PROJECTS,
       rowIndex: 3,
       columnIndex: 0,
       content: <ProjectsPage setActiveKey={setActiveKey} />,
     },
     {
-      key: PAGE_KEYS.ABOUT,
+      key: PageKeys.ABOUT,
       rowIndex: 5,
       columnIndex: 5,
       content: <AboutPage setActiveKey={setActiveKey} />,
     },
     {
-      key: PAGE_KEYS.CONTACT,
+      key: PageKeys.CONTACT,
       rowIndex: 0,
       columnIndex: 4,
       content: <ContactPage setActiveKey={setActiveKey} />,
