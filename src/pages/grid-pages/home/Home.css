@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "Edges";
+  src: url("./Edges.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.menu-button {
+  font-family: "Edges";
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 6vw;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out; /*gecko*/
+  -ms-transition: all 0.5s ease-out; /*IE10*/
+  -o-transition: all 0.5s ease-out; /*opera 11.10+*/
+  -pie-transition: all 0.5s ease-out; /*PIE*/
+  transition: all 0.5s ease-out;
+}
+
+.menu-button.active {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 3px;
+}
+
+.menu-button:hover {
+  -webkit-text-fill-color: #666562;
+  transform: translate(-2vw, 0px);
+}
