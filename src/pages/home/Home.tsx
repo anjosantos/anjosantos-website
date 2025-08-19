@@ -1,4 +1,4 @@
-import React, { useState, useEffect, type JSX, act } from "react";
+import React, { useState, useEffect, type JSX } from "react";
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment, useProgress } from "@react-three/drei";

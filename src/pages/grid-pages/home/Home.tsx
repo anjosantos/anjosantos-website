@@ -6,7 +6,7 @@ import { PageKeys } from "../pageKeys";
 import { Canvas } from "@react-three/fiber";
 import { Astronaut } from "@/components/three-d";
 
-import "./Home.css";
+import "./home.css";
 
 type HomeProps = {
   setActiveKey: (key: string) => void;
@@ -44,6 +44,7 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
             transform: "perspective(25vw) rotateY(-45deg)",
             position: "relative",
             right: "15vw",
+            zIndex: 2,
           }}
         >
           <button className="menu-button" onClick={() => {}}>

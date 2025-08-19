@@ -2,7 +2,7 @@ import AppRoutes from "./routes";
 import "./App.css";
 
 import { useLoading } from "@/providers";
-import { FullLoader } from "@/components";
+import { FullLoader, FullOverlay } from "@/components";
 
 const App = () => {
   const { loadingContext } = useLoading();
@@ -11,6 +11,7 @@ const App = () => {
   return (
     <>
       <AppRoutes />
+      <FullOverlay />
       <FullLoader isLoading={isLoading} />
     </>
   );
