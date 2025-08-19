@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Edges";
+  src: url("./Edges.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DsDigital";
+  src: url("./DsDigital.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SpaceAge";
+  src: url("./SpaceAge.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

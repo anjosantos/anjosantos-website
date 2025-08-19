@@ -1,0 +1,46 @@
+.overlay-label {
+  display: block;
+  font-family: "DsDigital";
+  color: #8cd1c4;
+  font-size: 16px;
+}
+.overlay-value {
+  display: block;
+  font-family: "DsDigital";
+  color: #8cd1c4;
+  text-align: center;
+  font-size: 24px;
+}
+
+.overlay-value.active {
+  color: #30de3c;
+}
+
+.pages-options {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
+
+.pages-option {
+  flex: 1;
+  display: block;
+  font-family: "DsDigital";
+  color: #8cd1c4;
+  text-align: center;
+  font-size: 20px;
+}
+
+.pages-option.active {
+  color: #30de3c;
+}
+
+.two-columns-flex {
+  display: flex;
+  gap: 5px;
+}
+
+.two-columns-flex > .column {
+  flex: 1;
+  display: flex;
+}
