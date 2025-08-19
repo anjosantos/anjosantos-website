@@ -1,6 +1,6 @@
-import React, { useState, useEffect, type JSX } from "react";
+import React, { useState, useEffect, type JSX, act } from "react";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment, useProgress } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
@@ -17,10 +17,20 @@ import {
 
 useGLTF.preload("/astronaut.glb");
 
+type ThreeJSCameraOptions = {
+  position: [number, number, number];
+  fov: number;
+};
+
 const Home: React.FC = () => {
   const { loadingContext } = useLoading();
   const { setIsLoading } = loadingContext;
+
   const [activeKey, setActiveKey] = useState<string>(PAGE_KEYS.HOME);
+  const [cameraSettings, setCameraSettings] = useState<ThreeJSCameraOptions>({
+    position: [0, 0, 4],
+    fov: 75,
+  });
   const [stars, setStars] = useState<JSX.Element[]>([]);
   const { progress } = useProgress();
 
@@ -34,6 +44,30 @@ const Home: React.FC = () => {
       setIsLoading(false);
     }
   }, [progress]);
+
+  useEffect(() => {
+    if (activeKey === PAGE_KEYS.HOME) {
+      setCameraSettings({
+        position: [0, 0, 4],
+        fov: 75,
+      });
+    } else if (activeKey === PAGE_KEYS.PROJECTS) {
+      setCameraSettings({
+        position: [10, 0, 4],
+        fov: 15,
+      });
+    } else if (activeKey === PAGE_KEYS.ABOUT) {
+      setCameraSettings({
+        position: [10, 0, 4],
+        fov: 25,
+      });
+    } else if (activeKey === PAGE_KEYS.CONTACT) {
+      setCameraSettings({
+        position: [10, 10, 4],
+        fov: 55,
+      });
+    }
+  }, [activeKey]);
 
   const pages = [
     {
@@ -62,12 +96,25 @@ const Home: React.FC = () => {
     },
   ];
 
+  const CameraRig = ({
+    position: [x, y, z],
+  }: {
+    position: [number, number, number];
+  }) => {
+    useFrame((state) => {
+      state.camera.position.lerp({ x, y, z }, 0.1);
+      state.camera.lookAt(0, 0, 0);
+    });
+    return <></>;
+  };
+
   return (
     <>
       <section
         style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0 }}
       >
-        <Canvas eventPrefix="client" camera={{ position: [0, 0, 4], fov: 75 }}>
+        <Canvas eventPrefix="client">
+          <CameraRig position={cameraSettings.position} />
           <Environment
             files="/nebulae2.hdr"
             background
