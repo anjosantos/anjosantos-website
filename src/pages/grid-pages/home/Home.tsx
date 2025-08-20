@@ -5,6 +5,7 @@ import { PageKeys } from "../pageKeys";
 
 import { Canvas } from "@react-three/fiber";
 import { Astronaut } from "@/components/three-d";
+import { OrbitControls } from "@react-three/drei";
 
 import "./home.css";
 
@@ -16,7 +17,7 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
   return (
     <GridPage>
       <section style={{ display: "flex", flexDirection: "row" }}>
-        <section style={{ flex: 3, height: "100vh" }}>
+        <section style={{ flex: 3, height: "100vh", pointerEvents: "auto" }}>
           <Canvas>
             <ambientLight intensity={Math.PI / 2} />
             <spotLight
@@ -31,6 +32,7 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
               decay={0}
               intensity={Math.PI}
             />
+            <OrbitControls />
             <Astronaut scale={1.1} position={[-1.5, -2.2, 0]} />
           </Canvas>
         </section>

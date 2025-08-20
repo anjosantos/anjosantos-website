@@ -1,16 +1,15 @@
 import { usePage } from "@/providers";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSquareLinkedin,
-  faSquareGithub,
-  faSquareInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-
 import { PageKeys } from "@/pages/grid-pages";
 import { FullOverlayContainer, OverlaySection } from "@/components";
 
 import "./full-overlay.css";
+import {
+  PagesOverlay,
+  OxyTempOverlay,
+  StatusCoordOverlay,
+  SocialsOverlay,
+} from "./sections";
 
 type FullOverlayProps = {};
 const FullOverlay: React.FC<FullOverlayProps> = () => {
@@ -55,6 +54,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
                   textDecoration: "underline",
                   display: "block",
                 }}
+                className="green-glow-text"
               >
                 ANJOSANTOS.DEV
               </span>
@@ -69,59 +69,10 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
             </OverlaySection>
           </FullOverlayContainer>
           <FullOverlayContainer width={210} position={4}>
-            <OverlaySection>
-              <span className="overlay-label">PAGES</span>
-
-              <section className="pages-options">
-                <span className="pages-option active">01</span>
-                <span className="pages-option">02</span>
-                <span className="pages-option">03</span>
-                <span className="pages-option">04</span>
-              </section>
-            </OverlaySection>
-            <section className="two-columns-flex">
-              <section className="column">
-                <OverlaySection>
-                  <span className="overlay-label">OXY</span>
-                  <span className="overlay-value active">96%</span>
-                </OverlaySection>
-              </section>
-              <section className="column">
-                <OverlaySection>
-                  <span className="overlay-label">TEMP</span>
-                  <span className="overlay-value">2.7K</span>
-                </OverlaySection>
-              </section>
-            </section>
-            <OverlaySection>
-              <section className="two-columns-flex">
-                <section className="column">
-                  <span className="overlay-label">ORIGIN</span>
-                </section>
-                <section className="column" style={{ flex: 1.2 }}>
-                  <span className="overlay-value">CANADA</span>
-                </section>
-              </section>
-            </OverlaySection>
-            <section className="two-columns-flex">
-              <section className="column" style={{ flex: 1.6 }}>
-                <OverlaySection>
-                  <span className="overlay-label">STATUS</span>
-                  <span className="overlay-value active">ONLINE</span>
-                </OverlaySection>
-              </section>
-              <section className="column">
-                <OverlaySection>
-                  <span className="overlay-label">LONG 93E</span>
-                  <span className="overlay-label">LAT 11N</span>
-                </OverlaySection>
-              </section>
-            </section>
-            <section style={{ marginTop: 5 }}>
-              <FontAwesomeIcon icon={faSquareLinkedin} color="#8cd1c4" size="lg" />
-              <FontAwesomeIcon icon={faSquareGithub} color="#8cd1c4" size="lg" />
-              <FontAwesomeIcon icon={faSquareInstagram} color="#8cd1c4" size="lg" />
-            </section>
+            <PagesOverlay activeKey={activeKey} />
+            <OxyTempOverlay />
+            <StatusCoordOverlay />
+            <SocialsOverlay />
           </FullOverlayContainer>
         </section>
       }
