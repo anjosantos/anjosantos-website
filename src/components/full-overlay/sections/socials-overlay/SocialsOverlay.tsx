@@ -7,13 +7,19 @@ import {
 
 import "./socials-overlay.css";
 
-type SocialsOverlayContainerProps = {};
+type SocialsOverlayContainerProps = {
+  isVisible: boolean;
+};
 
-const SocialsOverlayContainer: React.FC<
-  SocialsOverlayContainerProps
-> = ({}) => {
+const SocialsOverlayContainer: React.FC<SocialsOverlayContainerProps> = ({
+  isVisible,
+}) => {
   return (
-    <section className="clickable mt-5">
+    <section
+      className={`clickable mt-5 transition hidable ${
+        isVisible ? "visible" : ""
+      }`}
+    >
       <button className="social-button" onClick={() => console.log("TEST 1")}>
         <FontAwesomeIcon icon={faSquareLinkedin} color="#8cd1c4" size="lg" />
       </button>

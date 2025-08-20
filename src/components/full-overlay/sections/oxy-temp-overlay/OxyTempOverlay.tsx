@@ -1,12 +1,18 @@
 import { OverlaySection } from "@/components";
 
-type OxyTempOverlayContainerProps = {};
+type OxyTempOverlayContainerProps = {
+  isVisible: boolean;
+};
 
-const OxyTempOverlayContainer: React.FC<
-  OxyTempOverlayContainerProps
-> = ({}) => {
+const OxyTempOverlayContainer: React.FC<OxyTempOverlayContainerProps> = ({
+  isVisible,
+}) => {
   return (
-    <section className="two-columns-flex">
+    <section
+      className={`two-columns-flex transition hidable ${
+        isVisible ? "visible" : ""
+      }`}
+    >
       <section className="column">
         <OverlaySection>
           <span className="overlay-label">OXY</span>

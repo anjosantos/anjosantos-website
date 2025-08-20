@@ -1,12 +1,18 @@
 import { OverlaySection } from "@/components";
 
-type StatusCoordOverlayContainerProps = {};
+type StatusCoordOverlayContainerProps = {
+  isVisible: boolean;
+};
 
 const StatusCoordOverlayContainer: React.FC<
   StatusCoordOverlayContainerProps
-> = ({}) => {
+> = ({ isVisible }) => {
   return (
-    <section className="two-columns-flex">
+    <section
+      className={`two-columns-flex transition hidable ${
+        isVisible ? "visible" : ""
+      }`}
+    >
       <section className="column" style={{ flex: 1.6 }}>
         <OverlaySection>
           <span className="overlay-label">STATUS</span>

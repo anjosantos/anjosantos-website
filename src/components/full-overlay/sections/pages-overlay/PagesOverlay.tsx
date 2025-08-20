@@ -3,13 +3,15 @@ import { OverlaySection } from "@/components";
 
 type PagesOverlayContainerProps = {
   activeKey: PageKeys;
+  isVisible: boolean;
 };
 
 const PagesOverlayContainer: React.FC<PagesOverlayContainerProps> = ({
   activeKey,
+  isVisible,
 }) => {
   return (
-    <section>
+    <section className={`transition hidable ${isVisible ? "visible" : ""}`}>
       <OverlaySection>
         <span className="overlay-label">PAGES</span>
 

@@ -34,3 +34,13 @@
 .pages-option.active {
   color: #30de3c;
 }
+
+.hidable {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease-out;
+}
+
+.hidable.visible {
+  height: calc-size(auto, size);
+}

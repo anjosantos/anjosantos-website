@@ -9,6 +9,7 @@ import {
   OxyTempOverlay,
   StatusCoordOverlay,
   SocialsOverlay,
+  HeaderOverlay,
 } from "./sections";
 
 type FullOverlayProps = {};
@@ -46,33 +47,22 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
       {
         <section>
           <FullOverlayContainer width={210} position={1}>
-            <OverlaySection>
-              <span
-                style={{
-                  fontFamily: "SpaceAge",
-                  color: "#30de3c",
-                  textDecoration: "underline",
-                  display: "block",
-                }}
-                className="green-glow-text"
-              >
-                ANJOSANTOS.DEV
-              </span>
-              <span
-                style={{
-                  fontFamily: "DsDigital",
-                  color: "#8cd1c4",
-                }}
-              >
-                FRONTEND DEVELOPER
-              </span>
-            </OverlaySection>
+            <HeaderOverlay
+              isVisible={
+                activeKey === PageKeys.HOME ||
+                activeKey === PageKeys.PROJECTS ||
+                activeKey === PageKeys.CONTACT
+              }
+            />
+          </FullOverlayContainer>
+          <FullOverlayContainer width={210} position={2}>
+            <HeaderOverlay isVisible={activeKey === PageKeys.ABOUT} />
           </FullOverlayContainer>
           <FullOverlayContainer width={210} position={4}>
-            <PagesOverlay activeKey={activeKey} />
-            <OxyTempOverlay />
-            <StatusCoordOverlay />
-            <SocialsOverlay />
+            <PagesOverlay activeKey={activeKey} isVisible={true} />
+            <OxyTempOverlay isVisible={activeKey === PageKeys.HOME} />
+            <StatusCoordOverlay isVisible={activeKey === PageKeys.HOME} />
+            <SocialsOverlay isVisible={true} />
           </FullOverlayContainer>
         </section>
       }
