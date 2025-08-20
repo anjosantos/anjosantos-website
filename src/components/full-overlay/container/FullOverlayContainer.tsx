@@ -13,9 +13,9 @@ const FullOverlayContainer: React.FC<FullOverlayContainerProps> = ({
     if (position === 1) {
       return { top: "0", left: "0" };
     } else if (position === 2) {
-      return { top: "0", right: "0" };
+      return { top: "0", right: "0", alignItems: "end" };
     } else if (position === 3) {
-      return { bottom: "0", right: "0" };
+      return { bottom: "0", right: "0", alignItems: "end" };
     } else if (position === 4) {
       return { bottom: "0", left: "0" };
     }
@@ -25,6 +25,8 @@ const FullOverlayContainer: React.FC<FullOverlayContainerProps> = ({
     width,
     position: "absolute",
     margin: 10,
+    display: "flex",
+    flexDirection: "column",
     ...getPosition(),
   } as React.CSSProperties;
 

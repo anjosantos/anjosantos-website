@@ -1,7 +1,7 @@
 import { usePage } from "@/providers";
 
 import { PageKeys } from "@/pages/grid-pages";
-import { FullOverlayContainer, OverlaySection } from "@/components";
+import { FullOverlayContainer } from "@/components";
 
 import "./full-overlay.css";
 import {
@@ -10,12 +10,13 @@ import {
   StatusCoordOverlay,
   SocialsOverlay,
   HeaderOverlay,
+  BackButtonOverlay,
 } from "./sections";
 
 type FullOverlayProps = {};
 const FullOverlay: React.FC<FullOverlayProps> = () => {
   const { pageContext } = usePage();
-  const { activeKey } = pageContext;
+  const { activeKey, setActiveKey } = pageContext;
 
   const overlayStyle = {
     position: "fixed",
@@ -54,14 +55,26 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
                 activeKey === PageKeys.CONTACT
               }
             />
+            <BackButtonOverlay
+              isVisible={activeKey === PageKeys.ABOUT}
+              onClick={() => setActiveKey(PageKeys.HOME)}
+            />
           </FullOverlayContainer>
           <FullOverlayContainer width={210} position={2}>
             <HeaderOverlay isVisible={activeKey === PageKeys.ABOUT} />
+            <BackButtonOverlay
+              isVisible={activeKey === PageKeys.PROJECTS}
+              onClick={() => setActiveKey(PageKeys.HOME)}
+            />
           </FullOverlayContainer>
           <FullOverlayContainer width={210} position={4}>
             <PagesOverlay activeKey={activeKey} isVisible={true} />
             <OxyTempOverlay isVisible={activeKey === PageKeys.HOME} />
             <StatusCoordOverlay isVisible={activeKey === PageKeys.HOME} />
+            <BackButtonOverlay
+              isVisible={activeKey === PageKeys.CONTACT}
+              onClick={() => setActiveKey(PageKeys.HOME)}
+            />
             <SocialsOverlay isVisible={true} />
           </FullOverlayContainer>
         </section>
