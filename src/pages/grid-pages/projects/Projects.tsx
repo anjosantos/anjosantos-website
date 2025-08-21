@@ -4,14 +4,16 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Laptop } from "@/components/three-d";
 
-import { GridPage } from "@/components";
+import { GridPage, PageHeader } from "@/components";
 
 type ProjectsProps = {};
 
 const Projects: React.FC<ProjectsProps> = ({}) => {
   return (
     <GridPage>
-      <section style={{ display: "flex", flexDirection: "row" }}>
+      <section
+        style={{ display: "flex", flexDirection: "row", position: "relative" }}
+      >
         <section style={{ flex: 3, height: "100vh" }}></section>
         <section
           style={{
@@ -36,6 +38,16 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
             <OrbitControls makeDefault />
             <Laptop position={[0, -1, 0]} rotation={[0.5, 1.2, 0]} />
           </Canvas>
+        </section>
+        <section
+          style={{
+            position: "absolute",
+            top: "0",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
+          <PageHeader label="Projects" />
         </section>
       </section>
     </GridPage>

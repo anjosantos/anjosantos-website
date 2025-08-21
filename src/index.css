@@ -15,10 +15,12 @@ main {
 }
 
 .transition {
-  transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
   -webkit-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out; /*gecko*/
+  -ms-transition: all 0.5s ease-out; /*IE10*/
+  -o-transition: all 0.5s ease-out; /*opera 11.10+*/
+  -pie-transition: all 0.5s ease-out; /*PIE*/
+  transition: all 0.5s ease-out;
 }
 
 .mt-5 {
