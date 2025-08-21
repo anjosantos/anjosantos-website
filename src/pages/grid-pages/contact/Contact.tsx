@@ -1,20 +1,13 @@
 import React from "react";
 
 import { GridPage } from "@/components";
-import { PageKeys } from "../pageKeys";
 
-type ContactProps = {
-  setActiveKey: (key: string) => void;
-};
+type ContactProps = {};
 
-const Contact: React.FC<ContactProps> = ({ setActiveKey }) => {
+const Contact: React.FC<ContactProps> = () => {
   return (
     <GridPage>
-      <section>
-        <button onClick={() => setActiveKey(PageKeys.HOME)}>Back</button>
-        <h1>Sample Contact</h1>
-        <p>This is the Contact page of the application.</p>
-      </section>
+      <section></section>
     </GridPage>
   );
 };

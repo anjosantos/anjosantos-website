@@ -16,6 +16,7 @@ import {
 } from "@/pages/grid-pages";
 
 useGLTF.preload("/astronaut.glb");
+useGLTF.preload("/macbook_pro_2021.glb");
 
 type ThreeJSCameraOptions = {
   position: [number, number, number];
@@ -81,19 +82,19 @@ const Home: React.FC = () => {
       key: PageKeys.PROJECTS,
       rowIndex: 3,
       columnIndex: 0,
-      content: <ProjectsPage setActiveKey={setActiveKey} />,
+      content: <ProjectsPage />,
     },
     {
       key: PageKeys.ABOUT,
       rowIndex: 5,
       columnIndex: 5,
-      content: <AboutPage setActiveKey={setActiveKey} />,
+      content: <AboutPage />,
     },
     {
       key: PageKeys.CONTACT,
       rowIndex: 0,
       columnIndex: 4,
-      content: <ContactPage setActiveKey={setActiveKey} />,
+      content: <ContactPage />,
     },
   ];
 
