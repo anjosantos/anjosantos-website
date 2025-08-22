@@ -11,46 +11,68 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
 
   const [thumbHeight, setThumbHeight] = useState(20);
   const [thumbTop, setThumbTop] = useState(0);
+  const [scrollPercent, setScrollPercent] = useState(0);
+  const [rotation, setRotation] = useState(0);
   const [y, setY] = useState(0);
+  const [scrollHeight, setScrollHeight] = useState(0);
+  const BUFFER_ROTATION = 400;
 
-  // Update thumb height and ratio
-
-  // 1155.19 -> 2914.92
+  // Update thumb height + total scrollable height
   useEffect(() => {
     const update = () => {
+      setRotation(0);
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    if (rotation == 0) {
       const container = containerRef.current;
       const content = contentRef.current;
       if (!container || !content) return;
 
       const visible = container.clientHeight;
       const total = content.scrollHeight;
+      setScrollHeight(total + (total - visible));
 
-      console.log(visible, total, content.clientHeight);
-
+      setRotation(30);
       const ratio = visible / total;
       setThumbHeight(Math.max(visible * ratio, 20));
+    }
+  }, [rotation]);
 
-      setThumbTop((-y / total) * visible);
-    };
+  // Whenever scrollPercent or scrollHeight changes, update y + thumbTop
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || scrollHeight === 0) return;
 
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, [y]);
+    const visible = container.clientHeight;
+    const scrollable = scrollHeight - visible;
+
+    // derive Y from percentage
+    const newY = -(scrollPercent / 100) * scrollable;
+    setY(newY + BUFFER_ROTATION);
+
+    // derive thumbTop from percentage
+    const maxThumbTop = visible - thumbHeight;
+    setThumbTop((scrollPercent / 100) * maxThumbTop);
+  }, [scrollPercent, scrollHeight, thumbHeight]);
 
   // Thumb drag logic
   useEffect(() => {
     const thumb = thumbRef.current;
     const container = containerRef.current;
-    const content = contentRef.current;
-    if (!thumb || !container || !content) return;
+    if (!thumb || !container) return;
 
     let startY = 0;
-    let startTranslate = 0;
+    let startPercent = 0;
 
     const onMouseDown = (e: MouseEvent) => {
       startY = e.clientY;
-      startTranslate = y;
+      startPercent = scrollPercent;
       document.addEventListener("mousemove", onMouseMove);
       document.addEventListener("mouseup", onMouseUp);
       thumb.style.cursor = "grabbing";
@@ -59,10 +81,14 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
     const onMouseMove = (e: MouseEvent) => {
       const delta = e.clientY - startY;
       const visible = container.clientHeight;
-      const total = content.scrollHeight;
+      const maxThumbTop = visible - thumbHeight;
 
-      const newY = startTranslate - (delta / visible) * total;
-      setY(Math.min(0, Math.max(-(total - visible), newY)));
+      const deltaPercent = (delta / maxThumbTop) * 100;
+      const newPercent = Math.min(
+        100,
+        Math.max(0, startPercent + deltaPercent)
+      );
+      setScrollPercent(newPercent);
     };
 
     const onMouseUp = () => {
@@ -73,28 +99,30 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
 
     thumb.addEventListener("mousedown", onMouseDown);
     return () => thumb.removeEventListener("mousedown", onMouseDown);
-  }, [y]);
+  }, [scrollPercent, thumbHeight]);
 
-  // Wheel / native scroll override
+  // Wheel override
   useEffect(() => {
     const container = containerRef.current;
-    const content = contentRef.current;
-    if (!container || !content) return;
+    if (!container) return;
 
     const onWheel = (e: WheelEvent) => {
-      e.preventDefault(); // stop native scroll
+      e.preventDefault();
       const visible = container.clientHeight;
-      const total = content.scrollHeight;
+      const scrollable = scrollHeight - visible;
 
-      const delta = e.deltaY; // wheel movement
-      const newY = y - (delta / visible) * total;
-      setY(Math.min(0, Math.max(-(total - visible), newY)));
+      if (scrollable <= 0) return;
+
+      const deltaPercent =
+        (e.deltaY / visible) * (visible / scrollHeight) * 100;
+      setScrollPercent((prev) =>
+        Math.min(100, Math.max(0, prev + deltaPercent * 10))
+      );
     };
 
     container.addEventListener("wheel", onWheel, { passive: false });
-
     return () => container.removeEventListener("wheel", onWheel);
-  }, [y]);
+  }, [scrollHeight]);
 
   return (
     <div
@@ -103,7 +131,7 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
         display: "flex",
         height: "100%",
         position: "relative",
-        overflow: "hidden", // hide native scroll
+        overflow: "hidden",
       }}
     >
       <div
@@ -118,7 +146,7 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
       >
         <section
           style={{
-            transform: `rotateX(30deg) translateY(${y}px)`,
+            transform: `rotateX(${rotation}deg) translateY(${y}px)`,
           }}
         >
           {children}

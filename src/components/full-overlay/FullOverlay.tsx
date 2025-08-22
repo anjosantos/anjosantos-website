@@ -47,6 +47,17 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
     <section style={overlayStyle}>
       {
         <section>
+          <div
+            style={{
+              position: "absolute",
+              width: "100%",
+              minHeight: "25vh",
+              top: "-25px",
+              backgroundImage: "linear-gradient(0deg, transparent, black 75%)",
+              display: `${activeKey === PageKeys.ABOUT ? "block" : "none"}`,
+            }}
+            className="transition"
+          ></div>
           <FullOverlayContainer width={210} position={1}>
             <HeaderOverlay
               isVisible={
