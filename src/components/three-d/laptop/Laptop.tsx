@@ -1,13 +1,17 @@
 import { useRef } from "react";
 import * as THREE from "three";
-import { useLoader, useFrame } from "@react-three/fiber";
-import { TextureLoader } from "three";
+import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 
-const Laptop = (props: any) => {
+type LaptopProps = {
+  texture: THREE.Texture;
+  position?: [number, number, number];
+  rotation?: [number, number, number];
+};
+
+const Laptop: React.FC<LaptopProps> = ({ texture, ...props }) => {
   const ref = useRef<THREE.Group>(null!);
-  const { nodes, materials, scene } = useGLTF("/macbook_pro_2021.glb");
-  const texture = useLoader(TextureLoader, "/space.jpg");
+  const { scene } = useGLTF("/macbook_pro_2021.glb");
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();

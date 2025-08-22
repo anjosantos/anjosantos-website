@@ -1,3 +1,4 @@
+import { memo } from "react";
 import ContainerHeader from "../header";
 import ContainerPanelButton from "./button";
 import { Pill } from "@/components";
@@ -5,8 +6,15 @@ import { Pill } from "@/components";
 type ContainerPanelProps = {
   label: string;
   pills: string[];
+  onNext: () => void;
+  onPrevious: () => void;
 };
-const ContainerPanel: React.FC<ContainerPanelProps> = ({ label, pills }) => {
+const ContainerPanel: React.FC<ContainerPanelProps> = ({
+  label,
+  pills,
+  onNext,
+  onPrevious,
+}) => {
   return (
     <section
       style={{
@@ -22,12 +30,13 @@ const ContainerPanel: React.FC<ContainerPanelProps> = ({ label, pills }) => {
           justifyContent: "center",
         }}
       >
-        <ContainerPanelButton label="<<" onClick={() => {}} />
+        <ContainerPanelButton label="<<" onClick={onPrevious} />
       </section>
       <section
         style={{
           flexGrow: 1,
           marginLeft: "10px",
+          marginRight: "10px",
         }}
       >
         <ContainerHeader label={label} />
@@ -51,10 +60,10 @@ const ContainerPanel: React.FC<ContainerPanelProps> = ({ label, pills }) => {
           justifyContent: "center",
         }}
       >
-        <ContainerPanelButton label=">>" onClick={() => {}} />
+        <ContainerPanelButton label=">>" onClick={onNext} />
       </section>
     </section>
   );
 };
 
-export default ContainerPanel;
+export default memo(ContainerPanel);
