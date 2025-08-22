@@ -4,7 +4,8 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Laptop } from "@/components/three-d";
 
-import { GridPage, PageHeader } from "@/components";
+import { GridPage, PageHeader, Container, ContainerPanel } from "@/components";
+import ContainerParagraph from "@/components/container/paragraph";
 
 type ProjectsProps = {};
 
@@ -14,7 +15,34 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
       <section
         style={{ display: "flex", flexDirection: "row", position: "relative" }}
       >
-        <section style={{ flex: 3, height: "100vh" }}></section>
+        <section
+          style={{
+            flex: 3,
+            height: "100vh",
+            position: "relative",
+            display: "flex",
+          }}
+        >
+          <section
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              height: "400px",
+              width: "500px",
+              flex: 1,
+            }}
+          >
+            <Container>
+              <ContainerPanel
+                label="ScoutBees"
+                pills={["Python/Django", "ReactJS", "TypeScript"]}
+              />
+              <ContainerParagraph body="ScoutBees is a platform that connects beekeepers with local businesses." />
+            </Container>
+          </section>
+        </section>
         <section
           style={{
             flex: 2.5,

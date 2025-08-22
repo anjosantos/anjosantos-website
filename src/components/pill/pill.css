@@ -1,0 +1,9 @@
+.pill {
+  font-family: "SpaceAge";
+  display: flex;
+  background-color: #f9e9b6;
+  border-radius: 20px;
+  color: #372b05;
+  font-size: 12px;
+  padding: 1px 5px;
+}
