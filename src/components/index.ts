@@ -11,3 +11,5 @@ export {
   ContainerPanel,
 } from "./container";
 export { default as Pill } from "./pill";
+export { default as Scrollbar } from "./scrollbar";
+export { default as CrawlScrollbar } from "./crawl-scrollbar";
