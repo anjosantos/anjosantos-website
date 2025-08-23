@@ -9,6 +9,8 @@ import { TextureLoader } from "three";
 import { GridPage, PageHeader, Container, ContainerPanel } from "@/components";
 import ContainerParagraph from "@/components/container/paragraph";
 
+import "./projects.css";
+
 type ProjectsProps = {};
 
 enum ProjectKeys {
@@ -84,28 +86,9 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
 
   return (
     <GridPage>
-      <section
-        style={{ display: "flex", flexDirection: "row", position: "relative" }}
-      >
-        <section
-          style={{
-            flex: 3,
-            height: "100vh",
-            position: "relative",
-            display: "flex",
-          }}
-        >
-          <section
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: "400px",
-              width: "500px",
-              flex: 1,
-            }}
-          >
+      <section className="projects-container">
+        <section className="projects-left-container">
+          <section className="projects-panel-container">
             <Container>
               <ContainerPanel
                 label={selectedProject.label}
@@ -117,12 +100,7 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
             </Container>
           </section>
         </section>
-        <section
-          style={{
-            flex: 2.5,
-            height: "100vh",
-          }}
-        >
+        <section className="projects-right-container">
           <Canvas>
             <ambientLight intensity={Math.PI / 2} />
             <spotLight
