@@ -34,6 +34,15 @@ To get started with this project, follow these steps:
 
    This will start the Vite development server and open the application in your default browser.
 
+## Docker Commands
+
+DEV:
+- docker-compose -f docker/docker-compose.yml down
+- docker-compose -f docker/docker-compose.yml up -d --build
+
+PROD:
+
+
 ## Building for Production
 
 To build the application for production, run:
