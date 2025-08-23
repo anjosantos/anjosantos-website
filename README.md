@@ -41,6 +41,8 @@ DEV:
 - docker-compose -f docker/docker-compose.yml up -d --build
 
 PROD:
+- sudo docker-compose -f docker/docker-compose.prod.yml down
+- sudo docker-compose -f docker/docker-compose.prod.yml up -d --build
 
 
 ## Building for Production

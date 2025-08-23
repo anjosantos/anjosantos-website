@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  nginx:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.prod
+    volumes:
+      - ./build:/usr/src/app/frontend
+      - ./certs:/usr/src/app/certs
+      - './node_modules:/usr/src/app/node_modules'
+    ports:
+      - 80:80
+      - 443:443
