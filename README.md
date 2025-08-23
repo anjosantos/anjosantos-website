@@ -43,6 +43,7 @@ DEV:
 PROD:
 - sudo docker-compose -f docker/docker-compose.prod.yml down
 - sudo docker-compose -f docker/docker-compose.prod.yml up -d --build
+- docker exec -it docker_nginx_1 sh
 
 
 ## Building for Production
