@@ -1,27 +1,27 @@
 @font-face {
   font-family: "Edges";
-  src: url(".fonts/Edges.ttf") format("truetype");
+  src: url("/fonts/Edges.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "DsDigital";
-  src: url(".fonts/DsDigital.ttf") format("truetype");
+  src: url("/fonts/DsDigital.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "SpaceAge";
-  src: url(".fonts/SpaceAge.ttf") format("truetype");
+  src: url("/fonts/SpaceAge.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "D3Digitalism";
-  src: url(".fonts/D3Digitalism.ttf") format("truetype");
+  src: url("/fonts/D3Digitalism.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
