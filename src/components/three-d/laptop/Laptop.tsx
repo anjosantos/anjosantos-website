@@ -11,7 +11,7 @@ type LaptopProps = {
 
 const Laptop: React.FC<LaptopProps> = ({ texture, ...props }) => {
   const ref = useRef<THREE.Group>(null!);
-  const { scene } = useGLTF("/macbook_pro_2021.glb");
+  const { scene } = useGLTF("/three_d/macbook_pro_2021.glb");
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();

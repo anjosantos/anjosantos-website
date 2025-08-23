@@ -15,8 +15,8 @@ import {
   PageKeys,
 } from "@/pages/grid-pages";
 
-useGLTF.preload("/astronaut.glb");
-useGLTF.preload("/macbook_pro_2021.glb");
+useGLTF.preload("/three_d/astronaut.glb");
+useGLTF.preload("/three_d/macbook_pro_2021.glb");
 
 type ThreeJSCameraOptions = {
   position: [number, number, number];
@@ -118,7 +118,7 @@ const Home: React.FC = () => {
         <Canvas eventPrefix="client">
           <CameraRig position={cameraSettings.position} />
           <Environment
-            files="/nebulae2.hdr"
+            files="/three_d/nebulae2.hdr"
             background
             environmentIntensity={0.5}
             backgroundIntensity={2}

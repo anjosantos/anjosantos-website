@@ -48,9 +48,15 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
     },
   ]);
   const [selectedProject, setSelectedProject] = useState<Project>(projects[0]);
-  const scoutBeesTexture = useLoader(TextureLoader, "/scoutbees-page.png");
-  const bukidFreshTexture = useLoader(TextureLoader, "/bukidfresh-page.png");
-  const gemheadTexture = useLoader(TextureLoader, "/gemhead-page.png");
+  const scoutBeesTexture = useLoader(
+    TextureLoader,
+    "/images/scoutbees-page.png"
+  );
+  const bukidFreshTexture = useLoader(
+    TextureLoader,
+    "/images/bukidfresh-page.png"
+  );
+  const gemheadTexture = useLoader(TextureLoader, "/images/gemhead-page.png");
   const [selectedTexture, setSelectedTexture] =
     useState<THREE.Texture>(scoutBeesTexture);
 

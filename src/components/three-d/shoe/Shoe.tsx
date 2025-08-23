@@ -7,7 +7,7 @@ import { useGLTF } from "@react-three/drei";
 
 const Shoe = (props: any) => {
   const ref = useRef<THREE.Group>(null!);
-  const { nodes, materials } = useGLTF("/nike.glb");
+  const { nodes, materials } = useGLTF("/three_d/nike.glb");
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     ref.current.rotation.set(

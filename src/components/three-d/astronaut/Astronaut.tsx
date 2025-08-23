@@ -7,7 +7,7 @@ import { useGLTF } from "@react-three/drei";
 
 const Astronaut = (props: any) => {
   const ref = useRef<THREE.Group>(null!);
-  const { nodes, materials } = useGLTF("/astronaut.glb");
+  const { nodes, materials } = useGLTF("/three_d/astronaut.glb");
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     ref.current.rotation.set(
