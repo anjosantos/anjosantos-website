@@ -31,18 +31,6 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
     pointerEvents: "none",
   } as React.CSSProperties;
 
-  const renderOverlay = () => {
-    if (activeKey === PageKeys.HOME) {
-      return <></>;
-    } else if (activeKey === PageKeys.PROJECTS) {
-      return <></>;
-    } else if (activeKey === PageKeys.ABOUT) {
-      return <></>;
-    } else if (activeKey === PageKeys.CONTACT) {
-      return <></>;
-    }
-  };
-
   return (
     <section style={overlayStyle}>
       {
