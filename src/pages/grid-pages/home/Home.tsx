@@ -37,25 +37,25 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
         <section className="home-menu-container">
           <section className="home-menu-transform-container">
             <button className="menu-button transition" onClick={() => {}}>
-              HOME
+              <span className="menu-page-number">01</span>HOME
             </button>
             <button
               className="menu-button transition active"
               onClick={() => setActiveKey(PageKeys.PROJECTS)}
             >
-              PROJECTS
+              <span className="menu-page-number">02</span>PROJECTS
             </button>
             <button
               className="menu-button transition active"
               onClick={() => setActiveKey(PageKeys.ABOUT)}
             >
-              ABOUT
+              <span className="menu-page-number">03</span>ABOUT
             </button>
             <button
               className="menu-button transition active"
               onClick={() => setActiveKey(PageKeys.CONTACT)}
             >
-              CONTACT
+              <span className="menu-page-number">04</span>CONTACT
             </button>
           </section>
         </section>

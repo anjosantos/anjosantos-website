@@ -39,6 +39,16 @@
   text-align: right;
   padding: 0;
   margin: 0;
+  position: relative;
+}
+
+.menu-page-number {
+  font-family: "Edges";
+  color: #30de3c;
+  font-size: 2vh;
+  position: relative;
+  top: calc(-100% + 2vh + 2px);
+  right: 1px;
 }
 
 .menu-button.active {
@@ -49,6 +59,13 @@
 .menu-button:hover {
   -webkit-text-fill-color: #666562;
   transform: translate(-2vw, 0px);
+}
+.menu-button.active .menu-page-number {
+  -webkit-text-fill-color: #30de3c;
+  -webkit-text-stroke: 0;
+}
+.menu-button:hover .menu-page-number {
+  -webkit-text-fill-color: #30de3c;
 }
 
 @media (min-width: 576px) {
@@ -76,5 +93,11 @@
 
   .menu-button {
     font-size: 9vh;
+  }
+
+  .menu-page-number {
+    font-size: 3vh;
+    top: calc(-100% + 3vh + 4px);
+    right: 3px;
   }
 }
