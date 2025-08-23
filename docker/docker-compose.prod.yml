@@ -3,7 +3,6 @@ version: "3.9"
 services:
   nginx:
     build:
-      progress: plain
       context: ../
       dockerfile: docker/Dockerfile.prod
     volumes:
