@@ -10,7 +10,7 @@ RUN NODE_OPTIONS="--max-old-space-size=8192" npm install --silent
 COPY . /usr/src/app
 
 # Build Vite project
-RUN npm run build
+RUN NODE_OPTIONS="--max-old-space-size=8192" npm run build
 
 # # Production stage
 FROM nginx:stable-alpine
