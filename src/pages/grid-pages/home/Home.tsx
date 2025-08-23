@@ -5,7 +5,6 @@ import { PageKeys } from "../pageKeys";
 
 import { Canvas } from "@react-three/fiber";
 import { Astronaut } from "@/components/three-d";
-import { OrbitControls } from "@react-three/drei";
 
 import "./home.css";
 
@@ -16,8 +15,8 @@ type HomeProps = {
 const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
   return (
     <GridPage>
-      <section style={{ display: "flex", flexDirection: "row" }}>
-        <section style={{ flex: 3, height: "100vh", pointerEvents: "auto" }}>
+      <section className="home-container">
+        <section className="home-canvas-container">
           <Canvas>
             <ambientLight intensity={Math.PI / 2} />
             <spotLight
@@ -32,44 +31,33 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
               decay={0}
               intensity={Math.PI}
             />
-            <OrbitControls />
             <Astronaut scale={1.1} position={[-1.5, -2.2, 0]} />
           </Canvas>
         </section>
-        <section
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 2,
-            height: "100vh",
-            justifyContent: "center",
-            transform: "perspective(25vw) rotateY(-45deg)",
-            position: "relative",
-            right: "15vw",
-            zIndex: 2,
-          }}
-        >
-          <button className="menu-button" onClick={() => {}}>
-            HOME
-          </button>
-          <button
-            className="menu-button active"
-            onClick={() => setActiveKey(PageKeys.PROJECTS)}
-          >
-            PROJECTS
-          </button>
-          <button
-            className="menu-button active"
-            onClick={() => setActiveKey(PageKeys.ABOUT)}
-          >
-            ABOUT
-          </button>
-          <button
-            className="menu-button active"
-            onClick={() => setActiveKey(PageKeys.CONTACT)}
-          >
-            CONTACT
-          </button>
+        <section className="home-menu-container">
+          <section className="home-menu-transform-container">
+            <button className="menu-button transition" onClick={() => {}}>
+              HOME
+            </button>
+            <button
+              className="menu-button transition active"
+              onClick={() => setActiveKey(PageKeys.PROJECTS)}
+            >
+              PROJECTS
+            </button>
+            <button
+              className="menu-button transition active"
+              onClick={() => setActiveKey(PageKeys.ABOUT)}
+            >
+              ABOUT
+            </button>
+            <button
+              className="menu-button transition active"
+              onClick={() => setActiveKey(PageKeys.CONTACT)}
+            >
+              CONTACT
+            </button>
+          </section>
         </section>
       </section>
     </GridPage>
