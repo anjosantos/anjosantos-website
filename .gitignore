@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 certs
+*.pem
+*.key
