@@ -1,0 +1,103 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.home-canvas-container {
+  flex: 1;
+  height: 50vh;
+  pointer-events: auto;
+}
+
+.home-menu-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 50vh;
+  justify-content: start;
+  perspective: 40vh;
+  perspective-origin: right;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.home-menu-transform-container {
+  transform: rotateY(340deg);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-button {
+  font-family: "Edges";
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 5vh;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.menu-page-number {
+  font-family: "Edges";
+  color: #30de3c;
+  font-size: 2vh;
+  position: relative;
+  top: calc(-100% + 2vh + 2px);
+  right: 1px;
+}
+
+.menu-button.active {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 3px;
+}
+
+.menu-button:hover {
+  -webkit-text-fill-color: #666562;
+  transform: translate(-2vw, 0px);
+}
+.menu-button.active .menu-page-number {
+  -webkit-text-fill-color: #30de3c;
+  -webkit-text-stroke: 0;
+}
+.menu-button:hover .menu-page-number {
+  -webkit-text-fill-color: #30de3c;
+}
+
+@media (min-width: 576px) {
+  .home-menu-container {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-container {
+    flex-direction: row;
+  }
+
+  .home-canvas-container {
+    flex: 3;
+    height: 100vh;
+  }
+
+  .home-menu-container {
+    flex: 2;
+    right: 15vw;
+    height: 100vh;
+    transform: perspective(25vw) rotateY(-45deg);
+  }
+
+  .menu-button {
+    font-size: 9vh;
+  }
+
+  .menu-page-number {
+    font-size: 3vh;
+    top: calc(-100% + 3vh + 4px);
+    right: 3px;
+  }
+}
