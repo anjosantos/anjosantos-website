@@ -108,25 +108,27 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
         </section>
         <section className="projects-right-container">
           <Canvas>
-            <ambientLight intensity={Math.PI / 2} />
-            <spotLight
-              position={[10, 10, 10]}
-              angle={1}
-              penumbra={1}
-              decay={0}
-              intensity={Math.PI}
-            />
-            <pointLight
-              position={[-10, -10, -10]}
-              decay={0}
-              intensity={Math.PI}
-            />
-            <OrbitControls makeDefault />
-            <Laptop
-              texture={selectedTexture}
-              position={[0, -1, 0]}
-              rotation={[0.5, 1.2, 0]}
-            />
+            <React.Suspense fallback={null}>
+              <ambientLight intensity={Math.PI / 2} />
+              <spotLight
+                position={[10, 10, 10]}
+                angle={1}
+                penumbra={1}
+                decay={0}
+                intensity={Math.PI}
+              />
+              <pointLight
+                position={[-10, -10, -10]}
+                decay={0}
+                intensity={Math.PI}
+              />
+              <OrbitControls makeDefault />
+              <Laptop
+                texture={selectedTexture}
+                position={[0, -1, 0]}
+                rotation={[0.5, 1.2, 0]}
+              />
+            </React.Suspense>
           </Canvas>
         </section>
         <section

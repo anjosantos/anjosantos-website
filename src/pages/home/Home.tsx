@@ -1,11 +1,11 @@
 import React, { useState, useEffect, type JSX } from "react";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, Environment, useProgress } from "@react-three/drei";
+import { useGLTF, Environment } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-import { useLoading, usePage } from "@/providers";
-import { GridPages } from "@/components";
+import { usePage } from "@/providers";
+import { GridPages, LoadingChecker } from "@/components";
 import { Star } from "@/components/three-d";
 import {
   HomePage,
@@ -24,8 +24,6 @@ type ThreeJSCameraOptions = {
 };
 
 const Home: React.FC = () => {
-  const { loadingContext } = useLoading();
-  const { setIsLoading } = loadingContext;
   const { pageContext } = usePage();
   const { activeKey, setActiveKey } = pageContext;
 
@@ -34,18 +32,11 @@ const Home: React.FC = () => {
     fov: 75,
   });
   const [stars, setStars] = useState<JSX.Element[]>([]);
-  const { progress } = useProgress();
 
   useEffect(() => {
     const newStars = Array.from({ length: 200 }, (_, i) => <Star key={i} />);
     setStars(newStars);
   }, []);
-
-  useEffect(() => {
-    if (progress === 100) {
-      setIsLoading(false);
-    }
-  }, [progress]);
 
   useEffect(() => {
     if (activeKey === PageKeys.HOME) {
@@ -116,32 +107,35 @@ const Home: React.FC = () => {
         style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0 }}
       >
         <Canvas eventPrefix="client">
-          <CameraRig position={cameraSettings.position} />
-          <Environment
-            files="/three_d/nebulae2.hdr"
-            background
-            environmentIntensity={0.5}
-            backgroundIntensity={2}
-          />
-          <ambientLight intensity={0.7} />
-          <spotLight
-            intensity={0.5}
-            angle={0.1}
-            penumbra={1}
-            position={[10, 15, -5]}
-            castShadow
-          />
-          {stars.map((star) => (
-            <Star key={star.key} />
-          ))}
-          <EffectComposer>
-            <Bloom
-              mipmapBlur
-              luminanceThreshold={0.5}
-              luminanceSmoothing={0.03}
-              intensity={2}
+          <React.Suspense fallback={null}>
+            <CameraRig position={cameraSettings.position} />
+            <Environment
+              files="/three_d/nebulae2.hdr"
+              background
+              environmentIntensity={0.5}
+              backgroundIntensity={2}
             />
-          </EffectComposer>
+            <ambientLight intensity={0.7} />
+            <spotLight
+              intensity={0.5}
+              angle={0.1}
+              penumbra={1}
+              position={[10, 15, -5]}
+              castShadow
+            />
+            {stars.map((star) => (
+              <Star key={star.key} />
+            ))}
+            <EffectComposer>
+              <Bloom
+                mipmapBlur
+                luminanceThreshold={0.5}
+                luminanceSmoothing={0.03}
+                intensity={2}
+              />
+            </EffectComposer>
+            <LoadingChecker />
+          </React.Suspense>
         </Canvas>
       </section>
       <GridPages rows={5} columns={5} gridPages={pages} activeKey={activeKey} />

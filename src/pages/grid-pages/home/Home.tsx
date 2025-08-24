@@ -18,20 +18,22 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
       <section className="home-container">
         <section className="home-canvas-container">
           <Canvas>
-            <ambientLight intensity={Math.PI / 2} />
-            <spotLight
-              position={[10, 10, 10]}
-              angle={0.15}
-              penumbra={1}
-              decay={0}
-              intensity={Math.PI}
-            />
-            <pointLight
-              position={[-10, -10, -10]}
-              decay={0}
-              intensity={Math.PI}
-            />
-            <Astronaut scale={1.1} position={[-1.5, -2.2, 0]} />
+            <React.Suspense fallback={null}>
+              <ambientLight intensity={Math.PI / 2} />
+              <spotLight
+                position={[10, 10, 10]}
+                angle={0.15}
+                penumbra={1}
+                decay={0}
+                intensity={Math.PI}
+              />
+              <pointLight
+                position={[-10, -10, -10]}
+                decay={0}
+                intensity={Math.PI}
+              />
+              <Astronaut scale={1.1} position={[-1.5, -2.2, 0]} />
+            </React.Suspense>
           </Canvas>
         </section>
         <section className="home-menu-container">
