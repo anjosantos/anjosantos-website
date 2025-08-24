@@ -1,9 +1,9 @@
 const OverlaySection: React.FC<{
   children?: React.ReactNode;
-  background?: string;
-}> = ({ children }) => {
+  backgroundColor?: string;
+}> = ({ children, backgroundColor }) => {
   const overlaySectionStyle = {
-    backgroundColor: "rgba(49, 77, 61, 0.3)",
+    backgroundColor: backgroundColor || "rgba(49, 77, 61, 0.3)",
     boxSizing: "border-box",
     padding: 10,
     color: "white",

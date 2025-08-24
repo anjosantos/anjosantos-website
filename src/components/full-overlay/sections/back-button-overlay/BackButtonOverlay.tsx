@@ -5,11 +5,15 @@ import "./back-button-overlay.css";
 type BackButtonOverlayContainerProps = {
   isVisible: boolean;
   onClick: () => void;
+  arrowPosition?: "left" | "right";
+  arrowRotation?: number;
 };
 
 const BackButtonOverlayContainer: React.FC<BackButtonOverlayContainerProps> = ({
   isVisible,
   onClick,
+  arrowPosition = "left",
+  arrowRotation = 0,
 }) => {
   return (
     <section
@@ -18,9 +22,27 @@ const BackButtonOverlayContainer: React.FC<BackButtonOverlayContainerProps> = ({
       }`}
       style={{ width: "100px" }}
     >
-      <OverlaySection>
+      <OverlaySection backgroundColor="rgba(49, 77, 61, 0.8)">
         <button className="back-button" onClick={onClick}>
-          <span className="overlay-value">BACK</span>
+          <span className="overlay-value">
+            {arrowPosition === "left" && (
+              <span
+                className="arrow arrow-left"
+                style={{ transform: `rotate(${arrowRotation}deg)` }}
+              >
+                ↑
+              </span>
+            )}
+            BACK
+            {arrowPosition === "right" && (
+              <span
+                className="arrow arrow-right"
+                style={{ transform: `rotate(${arrowRotation}deg)` }}
+              >
+                ↑
+              </span>
+            )}
+          </span>
         </button>
       </OverlaySection>
     </section>

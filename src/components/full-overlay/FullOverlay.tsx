@@ -57,6 +57,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
             <BackButtonOverlay
               isVisible={activeKey === PageKeys.ABOUT}
               onClick={() => setActiveKey(PageKeys.HOME)}
+              arrowRotation={324}
             />
           </FullOverlayContainer>
           <FullOverlayContainer width={210} position={2}>
@@ -64,6 +65,8 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
             <BackButtonOverlay
               isVisible={activeKey === PageKeys.PROJECTS}
               onClick={() => setActiveKey(PageKeys.HOME)}
+              arrowPosition="right"
+              arrowRotation={46}
             />
           </FullOverlayContainer>
           <FullOverlayContainer width={210} position={4}>
@@ -73,6 +76,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
             <BackButtonOverlay
               isVisible={activeKey === PageKeys.CONTACT}
               onClick={() => setActiveKey(PageKeys.HOME)}
+              arrowRotation={235}
             />
             <SocialsOverlay isVisible={true} />
           </FullOverlayContainer>
