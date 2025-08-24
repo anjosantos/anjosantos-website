@@ -8,6 +8,7 @@
   flex: 1;
   height: 50vh;
   pointer-events: auto;
+  overflow: hidden;
 }
 
 .home-menu-container {
@@ -21,10 +22,13 @@
   position: relative;
   width: 100%;
   z-index: 2;
+  transform-origin: right center;
+  transform-style: preserve-3d;
+  overflow: initial;
 }
 
 .home-menu-transform-container {
-  transform: rotateY(340deg);
+  transform: rotateY(-25deg);
   display: flex;
   flex-direction: column;
 }
@@ -71,6 +75,7 @@
 @media (min-width: 576px) {
   .home-menu-container {
     justify-content: center;
+    overflow: hidden;
   }
 }
 
@@ -85,14 +90,13 @@
   }
 
   .home-menu-container {
-    flex: 2;
-    right: 15vw;
+    flex: 2.5;
+    right: 0;
     height: 100vh;
-    transform: perspective(25vw) rotateY(-45deg);
   }
 
   .menu-button {
-    font-size: 9vh;
+    font-size: 8vw;
   }
 
   .menu-page-number {

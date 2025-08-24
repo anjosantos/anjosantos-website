@@ -27,7 +27,7 @@ const HeaderOverlayContainer: React.FC<HeaderOverlayContainerProps> = ({
             color: "#8cd1c4",
           }}
         >
-          FRONTEND DEVELOPER
+          SOFTWARE DEVELOPER
         </span>
       </OverlaySection>
     </section>
