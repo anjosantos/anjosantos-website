@@ -5,32 +5,35 @@ type FullLoaderProps = {
 };
 
 const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
-  const [show, setShow] = useState(isLoading); // control mount
-  const [fade, setFade] = useState(true); // control fade class
+  const [fade, setFade] = useState(true);
+  const [launch, setLaunch] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
-      setShow(true);
-      setFade(true); // fade in
+      setFade(true);
     } else {
-      setFade(false); // start fade out
-      const timeout = setTimeout(() => setShow(false), 500); // match CSS transition
+      setLaunch(true);
+      const timeout = setTimeout(() => setFade(false), 1000); // match CSS transition
       return () => clearTimeout(timeout);
     }
   }, [isLoading]);
 
-  if (!show) return null;
+  // if (!isLoading) return null;
 
   return (
     <section className={`loader-container ${fade ? "fade-in" : "fade-out"}`}>
       <div className="stars" />
-      <div className="spaceship">
-        <div className="body" />
-        <div className="window" />
-        <div className="fin fin-left" />
-        <div className="fin fin-right" />
-        <div className="flame" />
+
+      <div className={`spaceship-wrapper ${launch && "rise"}`}>
+        <div className="spaceship">
+          <div className="body" />
+          <div className="window" />
+          <div className="fin fin-left" />
+          <div className="fin fin-right" />
+          <div className="flame" />
+        </div>
       </div>
+
       <div className="caption">Calibrating Hyperdrive. Please hold tight!</div>
 
       <style>
@@ -49,13 +52,21 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
             overflow: hidden;
             z-index: 9999;
             opacity: 1;
-            transition: opacity 0.5s ease; /* smooth fade */
+            transition: opacity 1s ease;
           }
 
           .fade-in { opacity: 1; }
           .fade-out { opacity: 0; }
 
-          /* === STARFIELD === */
+          /* Wrapper handles upward movement */
+          .spaceship-wrapper {
+            transition: transform 1.5s ease;
+          }
+          .spaceship-wrapper.rise {
+            transform: translateY(-400px);
+          }
+
+          /* Stars */
           .stars {
             position: absolute;
             top: -200px;
@@ -77,7 +88,6 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
             to { transform: translateY(200px); }
           }
 
-          /* === SPACESHIP === */
           .spaceship {
             position: relative;
             width: 40px;
@@ -119,16 +129,8 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
             border-top: 22px solid transparent;
             border-bottom: 0 solid transparent;
           }
-
-          .spaceship .fin-left {
-            left: -20px;
-            border-right: 20px solid red;
-          }
-
-          .spaceship .fin-right {
-            right: -20px;
-            border-left: 20px solid red;
-          }
+          .spaceship .fin-left { left: -20px; border-right: 20px solid red; }
+          .spaceship .fin-right { right: -20px; border-left: 20px solid red; }
 
           .spaceship .flame {
             position: absolute;
@@ -143,7 +145,6 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
             filter: blur(1px);
           }
 
-          /* === CAPTION === */
           .caption {
             margin-top: 50px;
             color: #30de3c;
