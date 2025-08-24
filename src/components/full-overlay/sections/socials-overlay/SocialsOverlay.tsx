@@ -20,15 +20,27 @@ const SocialsOverlayContainer: React.FC<SocialsOverlayContainerProps> = ({
         isVisible ? "visible" : ""
       }`}
     >
-      <button className="social-button" onClick={() => console.log("TEST 1")}>
+      <a
+        className="social-button"
+        href="https://www.linkedin.com/in/nicol-angelo-santos/"
+        target="_blank"
+      >
         <FontAwesomeIcon icon={faSquareLinkedin} color="#8cd1c4" size="lg" />
-      </button>
-      <button className="social-button" onClick={() => console.log("TEST 2")}>
+      </a>
+      <a
+        className="social-button"
+        href="https://github.com/anjosantos"
+        target="_blank"
+      >
         <FontAwesomeIcon icon={faSquareGithub} color="#8cd1c4" size="lg" />
-      </button>
-      <button className="social-button" onClick={() => console.log("TEST 3")}>
+      </a>
+      <a
+        className="social-button"
+        href="https://www.instagram.com/anjo_santos"
+        target="_blank"
+      >
         <FontAwesomeIcon icon={faSquareInstagram} color="#8cd1c4" size="lg" />
-      </button>
+      </a>
     </section>
   );
 };
