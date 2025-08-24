@@ -6,6 +6,7 @@ type FullLoaderProps = {
 
 const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
   const [fade, setFade] = useState(true);
+  const [show, setShow] = useState(true);
   const [launch, setLaunch] = useState(false);
 
   useEffect(() => {
@@ -13,12 +14,19 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
       setFade(true);
     } else {
       setLaunch(true);
-      const timeout = setTimeout(() => setFade(false), 1000); // match CSS transition
-      return () => clearTimeout(timeout);
+      const timeout = setTimeout(() => {
+        setFade(false);
+        setShow(false);
+      }, 1000);
+      const timeoutShow = setTimeout(() => setShow(false), 1500);
+      return () => {
+        clearTimeout(timeout);
+        clearTimeout(timeoutShow);
+      };
     }
   }, [isLoading]);
 
-  // if (!isLoading) return null;
+  if (!show) return null;
 
   return (
     <section className={`loader-container ${fade ? "fade-in" : "fade-out"}`}>
