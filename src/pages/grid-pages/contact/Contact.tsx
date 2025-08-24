@@ -22,7 +22,6 @@ const Contact: React.FC<ContactProps> = () => {
               >
                 santos.nicol.angelo@gmail.com
               </a>
-              .
             </span>
           </FloatingWrapper>
         </section>
