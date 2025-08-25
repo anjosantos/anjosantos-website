@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 
+import "./crawl-scrollbar.css";
+
 type CrawlScrollBarProps = {
   children: React.ReactNode;
 };
@@ -36,13 +38,14 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
 
       const visible = container.clientHeight;
       const total = content.scrollHeight;
+      if (visible == total) return;
       setScrollHeight(total + (total - visible));
 
-      setRotation(30);
+      setRotation(20);
       const ratio = visible / total;
       setThumbHeight(Math.max(visible * ratio, 20));
     }
-  }, [rotation]);
+  }, [rotation, contentRef.current]);
 
   // Whenever scrollPercent or scrollHeight changes, update y + thumbTop
   useEffect(() => {
@@ -142,14 +145,18 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
           height: "100%",
           perspective: "400px",
           position: "relative",
+          perspectiveOrigin: "bottom",
+          transformOrigin: "bottom center",
+          transformStyle: "preserve-3d",
         }}
       >
         <section
           style={{
             transform: `rotateX(${rotation}deg) translateY(${y}px)`,
+            transformStyle: "preserve-3d",
           }}
         >
-          {children}
+          <section className="scroll-bar-translate-z">{children}</section>
         </section>
       </div>
 

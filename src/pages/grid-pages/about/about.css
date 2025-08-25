@@ -1,0 +1,115 @@
+.about-container {
+  color: yellow;
+}
+
+.about-container p {
+  font-size: 20px;
+  text-align: justify;
+}
+
+.title-section {
+  margin-bottom: 30px;
+  margin-top: 100px;
+}
+.main-title {
+  margin: 0;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.sub-title {
+  margin: 0;
+  text-align: center;
+  font-size: 25px;
+  text-shadow: 1px 2px 4px #ffd900, 0px -2px 5px #ffd900;
+}
+
+.header {
+  margin: 0;
+  text-align: center;
+  font-size: 30px;
+  text-shadow: 1px 2px 4px #ffd900, 0px -2px 5px #ffd900;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.experience-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 80px;
+}
+
+.experience-date {
+  font-size: 10px;
+  font-weight: 600;
+  color: #908c7d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.experience-details {
+  position: relative;
+  top: -10px;
+}
+
+.experience-details h3 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 700;
+  color: #ffec5a;
+  font-family: "SpaceAge";
+}
+
+.experience-details h4 {
+  font-size: 12px;
+  margin: 0.25rem 0 1rem;
+  font-weight: 500;
+  color: #fefecd;
+  font-family: "DsDigital";
+}
+
+.experience-details p {
+  font-size: 15px;
+  color: yellow;
+  margin: 0;
+}
+
+/* Section Heading */
+.title-section .header {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+@media (min-width: 576px) {
+  .about-container p {
+    font-size: 30px;
+  }
+  .sub-title {
+    font-size: 50px;
+  }
+
+  .header {
+    font-size: 60px;
+  }
+
+  .experience-date {
+    font-size: 15px;
+  }
+
+  .experience-details h3 {
+    font-size: 38px;
+  }
+
+  .experience-details h4 {
+    font-size: 25px;
+  }
+
+  .experience-details p {
+    font-size: 20px;
+  }
+  .experience-item {
+    grid-template-columns: 180px 1fr;
+  }
+}
