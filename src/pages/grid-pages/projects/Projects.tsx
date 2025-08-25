@@ -31,20 +31,20 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
     {
       key: ProjectKeys.SCOUTBEES,
       label: "ScoutBees",
-      pills: ["Python", "Django", "ReactJS", "TypeScript"],
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.",
+      pills: ["Python", "Django", "ReactJS", "TypeScript", "Storybook"],
+      body: "ScoutBees is a startup initiative designed to help international students securely find rental properties overseas. I led the company’s overall technical strategy—overseeing research, development, quality assurance, and deployment—which resulted in a polished MVP web application and laid the foundation for future growth.",
     },
     {
       key: ProjectKeys.BUKIDFRESH,
       label: "BukidFresh",
       pills: ["Python", "Django", "ReactJS", "TypeScript"],
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.",
+      body: "BukidFresh is a digital marketplace for fresh produce, aimed at creating an inclusive agricultural sector for smallholder farmers. As CTO, I architected and developed the platform end-to-end—from backend systems to frontend design—empowering local farmers to reach broader markets.",
     },
     {
       key: ProjectKeys.GEMHEAD,
       label: "Gemhead",
       pills: ["PHP", "Laravel", "MySQL"],
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.",
+      body: "Gemhead is a personal passion project built to connect buyers with the products they’re searching for—a marketplace centered on demand rather than supply. I originated the concept, rallied a team around the vision, and led development to bring the platform to life.",
     },
   ]);
   const [selectedProject, setSelectedProject] = useState<Project>(projects[0]);

@@ -2,6 +2,7 @@ import { memo } from "react";
 import ContainerHeader from "../header";
 import ContainerPanelButton from "./button";
 import { Pill } from "@/components";
+import { AnimatePresence, motion } from "framer-motion";
 
 type ContainerPanelProps = {
   label: string;
@@ -9,6 +10,7 @@ type ContainerPanelProps = {
   onNext: () => void;
   onPrevious: () => void;
 };
+
 const ContainerPanel: React.FC<ContainerPanelProps> = ({
   label,
   pills,
@@ -23,6 +25,7 @@ const ContainerPanel: React.FC<ContainerPanelProps> = ({
         borderBottom: "3px solid #ffcb6a",
       }}
     >
+      {/* Previous Button */}
       <section
         style={{
           display: "flex",
@@ -32,14 +35,23 @@ const ContainerPanel: React.FC<ContainerPanelProps> = ({
       >
         <ContainerPanelButton label="<<" onClick={onPrevious} />
       </section>
-      <section
-        style={{
-          flexGrow: 1,
-          marginLeft: "10px",
-          marginRight: "10px",
-        }}
-      >
-        <ContainerHeader label={label} />
+
+      {/* Main Content */}
+      <section style={{ flexGrow: 1, marginLeft: "10px", marginRight: "10px" }}>
+        {/* Animate label */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={label}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ContainerHeader label={label} />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Animate pills */}
         <section
           style={{
             display: "flex",
@@ -48,11 +60,23 @@ const ContainerPanel: React.FC<ContainerPanelProps> = ({
             marginBottom: "8px",
           }}
         >
-          {pills.map((pill) => (
-            <Pill key={pill} label={pill} />
-          ))}
+          <AnimatePresence>
+            {pills.map((pill) => (
+              <motion.div
+                key={pill}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Pill label={pill} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </section>
       </section>
+
+      {/* Next Button */}
       <section
         style={{
           display: "flex",

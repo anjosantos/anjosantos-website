@@ -17,6 +17,7 @@
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.0.4",
     "@types/three": "^0.179.0",
+    "framer-motion": "^12.23.12",
     "path": "^0.12.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
