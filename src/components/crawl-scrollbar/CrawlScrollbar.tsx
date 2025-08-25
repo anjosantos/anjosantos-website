@@ -36,12 +36,13 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
       const content = contentRef.current;
       if (!container || !content) return;
 
+      setRotation(20);
+
       const visible = container.clientHeight;
       const total = content.scrollHeight;
       if (visible == total) return;
       setScrollHeight(total + (total - visible));
 
-      setRotation(20);
       const ratio = visible / total;
       setThumbHeight(Math.max(visible * ratio, 20));
     }
