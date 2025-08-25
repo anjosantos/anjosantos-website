@@ -16,7 +16,7 @@ import {
 type FullOverlayProps = {};
 const FullOverlay: React.FC<FullOverlayProps> = () => {
   const { pageContext } = usePage();
-  const { activeKey, setActiveKey } = pageContext;
+  const { activeKey, setActiveKey, setIsReferencesOpen } = pageContext;
 
   const overlayStyle = {
     position: "fixed",
@@ -68,6 +68,14 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
               arrowPosition="right"
               arrowRotation={46}
             />
+          </FullOverlayContainer>
+          <FullOverlayContainer width={210} position={3}>
+            <button
+              className="references-button clickable transition"
+              onClick={() => setIsReferencesOpen(true)}
+            >
+              references
+            </button>
           </FullOverlayContainer>
           <FullOverlayContainer width={210} position={4}>
             <PagesOverlay activeKey={activeKey} isVisible={true} />

@@ -44,3 +44,16 @@
 .hidable.visible {
   height: calc-size(auto, size);
 }
+
+.references-button {
+  all: unset;
+  color: #8cd1c4;
+  font-family: "DsDigital";
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.references-button:hover {
+  text-shadow: 1px 2px 4px #8cd1c4, 0px -2px 5px #8cd1c4;
+}

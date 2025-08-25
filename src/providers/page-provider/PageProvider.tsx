@@ -15,6 +15,7 @@ export const PageProvider = ({
   children: React.ReactNode;
 }): JSX.Element => {
   const [activeKey, setActiveKey] = useState<PageKeys>(PageKeys.HOME);
+  const [isReferencesOpen, setIsReferencesOpen] = useState<boolean>(false);
 
   return (
     <PageContext.Provider
@@ -22,6 +23,8 @@ export const PageProvider = ({
         pageContext: {
           activeKey,
           setActiveKey,
+          isReferencesOpen,
+          setIsReferencesOpen,
         },
       }}
     >

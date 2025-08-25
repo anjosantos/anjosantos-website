@@ -30,7 +30,11 @@ const FullOverlayContainer: React.FC<FullOverlayContainerProps> = ({
     ...getPosition(),
   } as React.CSSProperties;
 
-  return <section style={fullOverlayContainerStyle}>{children}</section>;
+  return (
+    <section style={fullOverlayContainerStyle} className="clickable">
+      {children}
+    </section>
+  );
 };
 
 export default FullOverlayContainer;

@@ -14,3 +14,4 @@ export { default as Pill } from "./pill";
 export { default as Scrollbar } from "./scrollbar";
 export { default as CrawlScrollbar } from "./crawl-scrollbar";
 export { default as LoadingChecker } from "./loading-checker";
+export { default as Modal } from "./modal";
