@@ -1,6 +1,7 @@
 import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { GridPage, CrawlScrollbar } from "@/components";
+import { GridPage, CrawlScrollbar, Pill } from "@/components";
 
 import "./about.css";
 
@@ -49,6 +50,24 @@ const About: React.FC<AboutProps> = ({}) => {
                 trained colleagues, and conducted technical interviews, while
                 also exploring GPT models for process optimization.
               </p>
+              <section className="experience-pills">
+                {[
+                  "Agile",
+                  "Azure",
+                  "Azure AI Studio",
+                  "Node",
+                  "ReactJS",
+                  "BabylonJS",
+                  "ModelViewer",
+                  "Vue.JS",
+                  "Typescript",
+                  ".NET MAUI",
+                  "RestFUL API",
+                  "Figma",
+                ].map((pill) => (
+                  <Pill variant="about" label={pill} />
+                ))}
+              </section>
             </div>
           </div>
 
@@ -65,6 +84,25 @@ const About: React.FC<AboutProps> = ({}) => {
                 Django, and integrated third-party services to ensure a robust
                 and seamless product experience.
               </p>
+              <section className="experience-pills">
+                {[
+                  "Python",
+                  "Django",
+                  "Node",
+                  "ReactJS",
+                  "Context API",
+                  "Typescript",
+                  "Storybook",
+                  "Websockets",
+                  "AWS",
+                  "Docker",
+                  "Postgres",
+                  "RestFUL API",
+                  "Figma",
+                ].map((pill) => (
+                  <Pill variant="about" label={pill} />
+                ))}
+              </section>
             </div>
           </div>
 
@@ -81,6 +119,23 @@ const About: React.FC<AboutProps> = ({}) => {
                 represented the team in IoT Cloud Architecture Forums and the
                 Frontend Guild.
               </p>
+              <section className="experience-pills">
+                {[
+                  "Agile",
+                  "Azure",
+                  "ARM Template",
+                  "Node",
+                  "ReactJS",
+                  "Context API",
+                  "Typescript",
+                  "C# .NET Core",
+                  "Microservices",
+                  "RestFUL API",
+                  "MUI",
+                ].map((pill) => (
+                  <Pill variant="about" label={pill} />
+                ))}
+              </section>
             </div>
           </div>
 
@@ -95,6 +150,22 @@ const About: React.FC<AboutProps> = ({}) => {
                 Django backend and React frontend, while building and guiding a
                 small team to accelerate delivery and reduce backlog.
               </p>
+              <section className="experience-pills">
+                {[
+                  "Python",
+                  "Django",
+                  "Node",
+                  "ReactJS",
+                  "Redux",
+                  "Typescript",
+                  "AWS",
+                  "Docker",
+                  "Postgres",
+                  "RestFUL API",
+                ].map((pill) => (
+                  <Pill variant="about" label={pill} />
+                ))}
+              </section>
             </div>
           </div>
 
@@ -109,6 +180,22 @@ const About: React.FC<AboutProps> = ({}) => {
                 supporting critical features. Collaborated closely with project
                 managers, developers, and testers to improve delivery workflows.
               </p>
+              <section className="experience-pills">
+                {[
+                  "Python",
+                  "Django",
+                  "Node",
+                  "React Native",
+                  "Redux",
+                  "Typescript",
+                  "AWS",
+                  "Docker",
+                  "Postgres",
+                  "RestFUL API",
+                ].map((pill) => (
+                  <Pill variant="about" label={pill} />
+                ))}
+              </section>
             </div>
           </div>
 
@@ -127,6 +214,20 @@ const About: React.FC<AboutProps> = ({}) => {
                 banking systems, ensuring 24/7 stability and supporting the
                 team’s transition to Agile practices.
               </p>
+
+              <section className="experience-pills">
+                {[
+                  "Agile",
+                  "Java",
+                  "Spring",
+                  "Hibernate",
+                  "JSP",
+                  "SQL",
+                  "Oracle DB",
+                ].map((pill) => (
+                  <Pill variant="about" label={pill} />
+                ))}
+              </section>
             </div>
           </div>
 
@@ -141,6 +242,11 @@ const About: React.FC<AboutProps> = ({}) => {
                 significantly increased efficiency in generating technical
                 documents.
               </p>
+              <section className="experience-pills">
+                {["Microsoft", "Macros"].map((pill) => (
+                  <Pill variant="about" label={pill} />
+                ))}
+              </section>
             </div>
           </div>
         </section>

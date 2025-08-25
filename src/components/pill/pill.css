@@ -7,3 +7,10 @@
   font-size: 12px;
   padding: 1px 5px;
 }
+
+.pill.about {
+  font-size: 21px;
+  padding: 3px 12px;
+  background-color: #ecff5f;
+  font-family: "DsDigital";
+}

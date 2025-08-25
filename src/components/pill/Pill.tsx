@@ -1,9 +1,16 @@
 import "./pill.css";
 
-const Pill: React.FC<{
+type PillProps = {
   label: string;
-}> = ({ label }) => {
-  return <span className="pill">{label}</span>;
+  variant: "default" | "about";
+};
+
+const Pill: React.FC<PillProps> = ({ label, variant = "default" }) => {
+  return (
+    <span className={`pill ${variant === "about" ? "about" : ""}`}>
+      {label}
+    </span>
+  );
 };
 
 export default Pill;
