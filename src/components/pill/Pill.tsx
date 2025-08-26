@@ -2,7 +2,7 @@ import "./pill.css";
 
 type PillProps = {
   label: string;
-  variant: "default" | "about";
+  variant?: "default" | "about";
 };
 
 const Pill: React.FC<PillProps> = ({ label, variant = "default" }) => {
