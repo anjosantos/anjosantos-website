@@ -16,9 +16,8 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
       setLaunch(true);
       const timeout = setTimeout(() => {
         setFade(false);
-        setShow(false);
       }, 1000);
-      const timeoutShow = setTimeout(() => setShow(false), 1500);
+      const timeoutShow = setTimeout(() => setShow(false), 2000);
       return () => {
         clearTimeout(timeout);
         clearTimeout(timeoutShow);
@@ -68,7 +67,7 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
 
           /* Wrapper handles upward movement */
           .spaceship-wrapper {
-            transition: transform 1.5s ease;
+            transition: transform 1s ease;
           }
           .spaceship-wrapper.rise {
             transform: translateY(-400px);
