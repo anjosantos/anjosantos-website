@@ -73,10 +73,152 @@
   -webkit-text-fill-color: #30de3c;
 }
 
+/* container to position the bubble (left-side chat) */
+.chat-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* the bubble itself */
+.bubble {
+  position: relative;
+  background: var(--bubble-bg);
+  color: var(--bubble-color);
+  padding: var(--padding-vertical) var(--padding-horizontal);
+  border-radius: var(--bubble-radius);
+  max-width: min(var(--max-width), 70%);
+  line-height: 1.4;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* left arrow using ::before (triangle) and ::after (soft shadow/clip) */
+.bubble::before {
+  content: "";
+  position: absolute;
+  left: calc(
+    -1 * var(--arrow-size) - 2px
+  ); /* place to the left of the bubble */
+  top: 16px; /* vertical placement of the pointer */
+  width: 0;
+  height: 0;
+  border-top: var(--arrow-size) solid transparent;
+  border-bottom: var(--arrow-size) solid transparent;
+  border-right: calc(var(--arrow-size) + 2px) solid var(--bubble-bg);
+  /* small transform so it feels attached */
+  transform: translateY(0);
+}
+
+/* optional: slightly darker edge to mimic a small shadow under arrow */
+.bubble::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--arrow-size) - 6px);
+  top: calc(16px + 2px);
+  width: 0;
+  height: 0;
+  border-top: var(--arrow-size) solid transparent;
+  border-bottom: var(--arrow-size) solid transparent;
+  border-right: calc(var(--arrow-size) + 2px) solid rgba(0, 0, 0, 0.25);
+  filter: blur(1px);
+  opacity: 0.6;
+}
+
+/* small utility classes */
+.small {
+  font-size: 0.9rem;
+  padding: 8px 12px;
+}
+.large {
+  font-size: 1.05rem;
+  padding: 14px 18px;
+}
+.muted {
+  opacity: 0.86;
+}
+
+/* Right-side bubble example (pointer on right) */
+.bubble.right {
+  margin-left: auto;
+  background: #0b5cff;
+  color: white;
+  border-radius: var(--bubble-radius);
+}
+.bubble.right::before {
+  left: auto;
+  right: calc(-1 * var(--arrow-size) - 2px);
+  border-right: none;
+  border-left: calc(var(--arrow-size) + 2px) solid var(--bubble-bg, #0b5cff);
+}
+.bubble.right::after {
+  left: auto;
+  right: calc(-1 * var(--arrow-size) - 6px);
+  border-right: none;
+  border-left: calc(var(--arrow-size) + 2px) solid rgba(0, 0, 0, 0.18);
+}
+
+.chat-bubble-container {
+  position: absolute;
+  right: 10px;
+  top: 15%;
+  width: 50%;
+}
+
+.chat-bubble {
+  font-size: 15px;
+  background: rgb(23 30 26 / 80%);
+  border: 5px solid #32de3e;
+  border-radius: 35px;
+  padding: 12px 16px;
+  max-width: 300px;
+  line-height: 1.4;
+  font-family: "DsDigital";
+  color: #8cd1c4;
+}
+
+.chat-bubble strong {
+  color: #32de3e;
+}
+
+/* pointer (left side) */
+.chat-bubble::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: -18px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 18px solid white; /* inner fill (white) */
+}
+
+.chat-bubble::after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-right: 20px solid #32de3d;
+}
+
 @media (min-width: 576px) {
   .home-menu-container {
     justify-content: center;
     overflow: hidden;
+  }
+
+  .chat-bubble {
+    font-size: 24px;
+  }
+  .chat-bubble-container {
+    width: 40%;
+    right: 40px;
   }
 }
 
@@ -88,6 +230,7 @@
   .home-canvas-container {
     flex: 3;
     height: 100vh;
+    position: relative;
   }
 
   .home-menu-container {
@@ -104,5 +247,10 @@
     font-size: 3vh;
     top: calc(-100% + 3vh + 4px);
     right: 3px;
+  }
+
+  .chat-bubble-container {
+    right: 30px;
+    top: 25%;
   }
 }

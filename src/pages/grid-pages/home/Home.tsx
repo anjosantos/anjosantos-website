@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GridPage } from "@/components";
+import { GridPage, FloatingWrapper } from "@/components";
 import { PageKeys } from "../pageKeys";
 
 import { Canvas } from "@react-three/fiber";
@@ -35,6 +35,16 @@ const Home: React.FC<HomeProps> = ({ setActiveKey }) => {
               <Astronaut scale={1.1} position={[-1.5, -2.2, 0]} />
             </React.Suspense>
           </Canvas>
+
+          <section className="chat-bubble-container">
+            <FloatingWrapper>
+              <div className="chat-bubble">
+                Hi! I’m <strong>ANJO</strong>! As a kid, I dreamed of being an
+                astronaut and wanted to fly to space. Now, I launch code instead
+                of rockets ✨🚀.
+              </div>
+            </FloatingWrapper>
+          </section>
         </section>
         <section className="home-menu-container">
           <section className="home-menu-transform-container">
