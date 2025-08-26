@@ -7,7 +7,7 @@ import { useGLTF } from "@react-three/drei";
 
 const Astronaut = (props: any) => {
   const ref = useRef<THREE.Group>(null!);
-  const { nodes, materials } = useGLTF("/three_d/astronaut.glb");
+  const { scene } = useGLTF("/three_d/anjo_astronaut.glb");
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     ref.current.rotation.set(
@@ -18,16 +18,10 @@ const Astronaut = (props: any) => {
     ref.current.position.y = (0.5 + Math.cos(t / 2)) / 7;
   });
   return (
-    <group ref={ref}>
-      <mesh
-        receiveShadow
-        castShadow
-        //@ts-ignore
-        geometry={nodes.Astronaut_mesh.geometry}
-        //@ts-ignore
-        material={materials.Astronaut_mat}
-        {...props}
-      />
+    <group {...props}>
+      <group ref={ref}>
+        <primitive object={scene} scale={1} />;
+      </group>
     </group>
   );
 };

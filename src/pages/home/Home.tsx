@@ -15,7 +15,7 @@ import {
   PageKeys,
 } from "@/pages/grid-pages";
 
-useGLTF.preload("/three_d/astronaut.glb");
+useGLTF.preload("/three_d/anjo_astronaut.glb");
 useGLTF.preload("/three_d/macbook_pro_2021.glb");
 
 type ThreeJSCameraOptions = {
