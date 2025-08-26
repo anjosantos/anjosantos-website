@@ -110,7 +110,7 @@ const Home: React.FC = () => {
           <React.Suspense fallback={null}>
             <CameraRig position={cameraSettings.position} />
             <Environment
-              files="/three_d/nebulae2.hdr"
+              files="/three_d/nebulae.jpg"
               background
               environmentIntensity={0.5}
               backgroundIntensity={2}
