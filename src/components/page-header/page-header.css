@@ -2,8 +2,14 @@
   font-family: "Edges";
   background: transparent;
   color: white;
-  font-size: 50px;
+  font-size: 30px;
   text-align: center;
   padding: 0;
-  margin: 30px;
+  margin: 75px;
+}
+@media (min-width: 576px) {
+  .page-header {
+    font-size: 50px;
+    margin: 30px;
+  }
 }

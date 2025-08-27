@@ -6,8 +6,8 @@
 }
 
 .projects-left-container {
-  flex: 1;
-  height: 50vh;
+  flex: 2;
+  height: 66vh;
   position: relative;
   display: flex;
 }
@@ -17,14 +17,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 40vh;
+  height: 50vh;
   width: 90vw;
   flex: 1;
 }
 
 .projects-right-container {
+  position: relative;
   flex: 1;
-  height: 50vh;
+  height: 33vh;
+  top: 65px;
 }
 
 @media (min-width: 768px) {
@@ -45,5 +47,6 @@
   .projects-right-container {
     flex: 2.5;
     height: 100vh;
+    top: 0;
   }
 }

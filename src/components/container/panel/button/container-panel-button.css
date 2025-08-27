@@ -2,9 +2,14 @@
   all: unset;
   cursor: pointer;
   color: #ffcb6a;
-  font-size: 30px;
+  font-size: 20px;
   font-family: D3Digitalism;
 }
 .container-panel-button:hover {
   text-shadow: 1px 2px 4px #ffcb6a, 0px -2px 5px #ffcb6a;
+}
+@media (min-width: 576px) {
+  .container-panel-button {
+    font-size: 30px;
+  }
 }

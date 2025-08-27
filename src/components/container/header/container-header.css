@@ -1,0 +1,12 @@
+.container-header {
+  margin: 0;
+  font-family: "D3Digitalism";
+  font-size: 20px;
+  color: #ffcb6a;
+}
+
+@media (min-width: 576px) {
+  .container-header {
+    font-size: 30px;
+  }
+}

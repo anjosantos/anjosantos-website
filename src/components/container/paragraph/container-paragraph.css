@@ -1,0 +1,12 @@
+.container-paragraph {
+  margin: 10px;
+  font-family: "DsDigital";
+  font-size: 20px;
+  color: #f9e9b6;
+}
+
+@media (min-width: 576px) {
+  .container-paragraph {
+    margin: 20px;
+  }
+}
