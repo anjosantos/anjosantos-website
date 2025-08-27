@@ -10,6 +10,7 @@
   height: 66vh;
   position: relative;
   display: flex;
+  flex: 2;
 }
 
 .projects-panel-container {
@@ -27,6 +28,7 @@
   flex: 1;
   height: 33vh;
   top: 65px;
+  flex: 1;
 }
 
 @media (min-width: 768px) {
