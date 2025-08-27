@@ -66,12 +66,13 @@
 
 .menu-button.active {
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 3px;
+  -webkit-text-stroke: 1px;
 }
 
 .menu-button:hover {
   transform: translate(-2dvw, 0px);
 }
+
 .menu-button:hover .menu-label {
   -webkit-text-fill-color: #8cd1c4;
 
@@ -262,6 +263,9 @@
     right: 5px;
   }
 
+  .menu-button.active {
+    -webkit-text-stroke: 3px;
+  }
   .chat-bubble-container {
     right: 30px;
     top: 25%;
