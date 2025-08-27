@@ -49,8 +49,8 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100dvw;
+            height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,7 +79,7 @@ const FullLoader: React.FC<FullLoaderProps> = ({ isLoading }) => {
             top: -200px;
             left: 0;
             width: 100%;
-            height: 125vh;
+            height: 125dvh;
             background: radial-gradient(2px 2px at 20% 30%, white, transparent),
                         radial-gradient(1.5px 1.5px at 70% 60%, white, transparent),
                         radial-gradient(2px 2px at 50% 80%, white, transparent),

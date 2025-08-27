@@ -7,7 +7,7 @@
 
 .projects-left-container {
   flex: 2;
-  height: 66vh;
+  height: 66dvh;
   position: relative;
   display: flex;
   z-index: 2;
@@ -18,15 +18,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 50vh;
-  width: 90vw;
+  height: 50dvh;
+  width: 90dvw;
   flex: 1;
 }
 
 .projects-right-container {
   position: relative;
   flex: 1;
-  height: 33vh;
+  height: 33dvh;
   top: 65px;
   z-index: 1;
 }
@@ -38,17 +38,17 @@
 
   .projects-left-container {
     flex: 3;
-    height: 100vh;
+    height: 100dvh;
   }
   .projects-panel-container {
-    height: 60vh;
-    width: 40vw;
+    height: 60dvh;
+    width: 40dvw;
     max-height: 400px;
   }
 
   .projects-right-container {
     flex: 2.5;
-    height: 100vh;
+    height: 100dvh;
     top: 0;
   }
 }

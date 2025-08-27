@@ -16,12 +16,12 @@
 
 @media (min-width: 996px) {
   .scroll-bar-translate-z {
-    transform: translateZ(25vw);
+    transform: translateZ(25dvw);
   }
 }
 
 @media (min-width: 1200px) {
   .scroll-bar-translate-z {
-    transform: translateZ(20vw);
+    transform: translateZ(20dvw);
   }
 }

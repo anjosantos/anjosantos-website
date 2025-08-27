@@ -6,7 +6,7 @@
 
 .home-canvas-container {
   flex: 1;
-  height: 50vh;
+  height: 50dvh;
   pointer-events: auto;
   overflow: hidden;
 }
@@ -15,9 +15,9 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 50vh;
+  height: 50dvh;
   justify-content: start;
-  perspective: 40vh;
+  perspective: 40dvh;
   perspective-origin: right;
   position: relative;
   width: 100%;
@@ -50,15 +50,15 @@
 .menu-label {
   font-family: "Edges";
   color: white;
-  font-size: 5vh;
-  line-height: 4.5vh;
+  font-size: 5dvh;
+  line-height: 4.5dvh;
   cursor: pointer;
 }
 
 .menu-page-number {
   font-family: "Edges";
   color: #30de3c;
-  font-size: 2vh;
+  font-size: 2dvh;
   position: relative;
   top: calc(2px);
   right: 1px;
@@ -70,7 +70,7 @@
 }
 
 .menu-button:hover {
-  transform: translate(-2vw, 0px);
+  transform: translate(-2dvw, 0px);
 }
 .menu-button:hover .menu-label {
   -webkit-text-fill-color: #8cd1c4;
@@ -241,23 +241,23 @@
 
   .home-canvas-container {
     flex: 3;
-    height: 100vh;
+    height: 100dvh;
     position: relative;
   }
 
   .home-menu-container {
     flex: 2.5;
     right: 0;
-    height: 100vh;
+    height: 100dvh;
   }
 
   .menu-label {
-    font-size: 8vw;
-    line-height: 7vw;
+    font-size: 8dvw;
+    line-height: 7dvw;
   }
 
   .menu-page-number {
-    font-size: 3vh;
+    font-size: 3dvh;
     top: 5px;
     right: 5px;
   }
@@ -267,13 +267,13 @@
     top: 25%;
   }
   .home-menu-container {
-    perspective: 60vh;
+    perspective: 60dvh;
   }
 }
 
 @media (min-width: 1200px) {
   .menu-label {
-    font-size: 15vh;
-    line-height: 12vh;
+    font-size: 15dvh;
+    line-height: 12dvh;
   }
 }

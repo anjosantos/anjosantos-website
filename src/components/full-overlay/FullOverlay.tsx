@@ -24,7 +24,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
         style={{
           position: "absolute",
           width: "100%",
-          minHeight: "25vh",
+          minHeight: "25dvh",
           top: "-25px",
           backgroundImage: "linear-gradient(0deg, transparent, black 75%)",
           display: `${activeKey === PageKeys.ABOUT ? "block" : "none"}`,
