@@ -20,6 +20,16 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
 
   return (
     <section className="full-overlay-container">
+      <b>TESTING</b>
+      <b
+        style={{
+          position: "absolute",
+          left: "50px",
+          top: "50px",
+        }}
+      >
+        TESTING 2
+      </b>
       <div
         style={{
           position: "absolute",
