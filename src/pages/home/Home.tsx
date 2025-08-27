@@ -1,6 +1,6 @@
 import React, { useState, useEffect, type JSX } from "react";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
   const { pageContext } = usePage();
   const { activeKey, setActiveKey } = pageContext;
 
-  const [cameraSettings, setCameraSettings] = useState<ThreeJSCameraOptions>({
+  const [, setCameraSettings] = useState<ThreeJSCameraOptions>({
     position: [0, 0, 4],
     fov: 75,
   });
@@ -89,18 +89,6 @@ const Home: React.FC = () => {
     },
   ];
 
-  const CameraRig = ({
-    position: [x, y, z],
-  }: {
-    position: [number, number, number];
-  }) => {
-    useFrame((state) => {
-      state.camera.position.lerp({ x, y, z }, 0.1);
-      state.camera.lookAt(0, 0, 0);
-    });
-    return <></>;
-  };
-
   return (
     <>
       <section
@@ -108,15 +96,6 @@ const Home: React.FC = () => {
       >
         <Canvas eventPrefix="client">
           <React.Suspense fallback={null}>
-            <CameraRig position={cameraSettings.position} />
-            <ambientLight intensity={0.7} />
-            <spotLight
-              intensity={0.5}
-              angle={0.1}
-              penumbra={1}
-              position={[10, 15, -5]}
-              castShadow
-            />
             {stars.map((star) => (
               <Star key={star.key} />
             ))}
