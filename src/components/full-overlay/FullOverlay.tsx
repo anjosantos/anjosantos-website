@@ -32,6 +32,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
         className="transition"
       ></div>
       <FullOverlayContainer width={210} position={1}>
+        <b style={{ color: "white" }}>EH</b>
         <HeaderOverlay
           isVisible={
             activeKey === PageKeys.HOME ||
@@ -46,6 +47,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
         />
       </FullOverlayContainer>
       <FullOverlayContainer width={210} position={2}>
+        <b style={{ color: "white" }}>EH</b>
         <HeaderOverlay isVisible={activeKey === PageKeys.ABOUT} />
         <BackButtonOverlay
           isVisible={activeKey === PageKeys.PROJECTS}
@@ -55,6 +57,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
         />
       </FullOverlayContainer>
       <FullOverlayContainer width={210} position={3}>
+        <b style={{ color: "white" }}>EH</b>
         <button
           className="references-button clickable transition"
           onClick={() => setIsReferencesOpen(true)}
@@ -63,6 +66,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
         </button>
       </FullOverlayContainer>
       <FullOverlayContainer width={210} position={4}>
+        <b style={{ color: "white" }}>EH</b>
         <PagesOverlay activeKey={activeKey} isVisible={true} />
         <OxyTempOverlay isVisible={activeKey === PageKeys.HOME} />
         <StatusCoordOverlay isVisible={activeKey === PageKeys.HOME} />
