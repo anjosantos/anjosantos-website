@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 
 import "./crawl-scrollbar.css";
-import { start } from "repl";
-import { ol } from "framer-motion/client";
 
 type CrawlScrollBarProps = {
   children: React.ReactNode;
