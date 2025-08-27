@@ -28,7 +28,7 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
           top: "50px",
         }}
       >
-        TESTING 2 {activeKey}
+        TESTING 2
       </b>
       <div
         style={{

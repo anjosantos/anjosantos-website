@@ -32,7 +32,6 @@ const FullOverlayContainer: React.FC<FullOverlayContainerProps> = ({
 
   return (
     <section style={fullOverlayContainerStyle} className="clickable">
-      <b>EH</b>
       {children}
     </section>
   );

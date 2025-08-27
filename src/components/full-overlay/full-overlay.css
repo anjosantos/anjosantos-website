@@ -53,7 +53,7 @@
 }
 
 .hidable.visible {
-  height: 100%;
+  height: calc-size(auto, size);
 }
 
 .references-button {
