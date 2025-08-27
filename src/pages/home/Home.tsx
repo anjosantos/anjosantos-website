@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, type JSX } from "react";
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 import { usePage } from "@/providers";
 import { GridPages, LoadingChecker } from "@/components";
+import { Star } from "@/components/three-d";
 import {
   HomePage,
   ProjectsPage,
@@ -29,6 +31,12 @@ const Home: React.FC = () => {
     position: [0, 0, 4],
     fov: 75,
   });
+  const [stars, setStars] = useState<JSX.Element[]>([]);
+
+  useEffect(() => {
+    const newStars = Array.from({ length: 200 }, (_, i) => <Star key={i} />);
+    setStars(newStars);
+  }, []);
 
   useEffect(() => {
     if (activeKey === PageKeys.HOME) {
@@ -115,6 +123,17 @@ const Home: React.FC = () => {
               position={[10, 15, -5]}
               castShadow
             />
+            {stars.map((star) => (
+              <Star key={star.key} />
+            ))}
+            <EffectComposer>
+              <Bloom
+                mipmapBlur
+                luminanceThreshold={0.5}
+                luminanceSmoothing={0.03}
+                intensity={2}
+              />
+            </EffectComposer>
             <LoadingChecker />
           </React.Suspense>
         </Canvas>
