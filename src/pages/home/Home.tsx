@@ -14,6 +14,7 @@ import {
   ContactPage,
   PageKeys,
 } from "@/pages/grid-pages";
+import useIsMobile from "@/hooks/useIsMobile";
 
 useGLTF.preload("/three_d/anjo_astronaut.glb");
 useGLTF.preload("/three_d/macbook_pro_2021.glb");
@@ -100,21 +101,22 @@ const Home: React.FC = () => {
     });
     return <></>;
   };
+  const isMobile = useIsMobile();
 
   return (
     <>
-      <section
-        style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0 }}
-      >
+      <section className="main-bg-container">
         <Canvas eventPrefix="client">
           <React.Suspense fallback={null}>
             <CameraRig position={cameraSettings.position} />
-            <Environment
-              files="/three_d/nebulae.jpg"
-              background
-              environmentIntensity={0.5}
-              backgroundIntensity={2}
-            />
+            {!isMobile && (
+              <Environment
+                files="/three_d/nebulae.jpg"
+                background
+                environmentIntensity={0.5}
+                backgroundIntensity={2}
+              />
+            )}
             <ambientLight intensity={0.7} />
             <spotLight
               intensity={0.5}
@@ -126,14 +128,16 @@ const Home: React.FC = () => {
             {stars.map((star) => (
               <Star key={star.key} />
             ))}
-            <EffectComposer>
-              <Bloom
-                mipmapBlur
-                luminanceThreshold={0.5}
-                luminanceSmoothing={0.03}
-                intensity={2}
-              />
-            </EffectComposer>
+            {!isMobile && (
+              <EffectComposer>
+                <Bloom
+                  mipmapBlur
+                  luminanceThreshold={0.5}
+                  luminanceSmoothing={0.03}
+                  intensity={2}
+                />
+              </EffectComposer>
+            )}
             <LoadingChecker />
           </React.Suspense>
         </Canvas>
