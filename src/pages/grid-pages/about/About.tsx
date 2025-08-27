@@ -16,18 +16,16 @@ const About: React.FC<AboutProps> = ({}) => {
             <h2 className="sub-title">ANJO SANTOS</h2>
           </section>
           <p>
-            I am a full-stack developer with over 12 years of experience
-            building secure, scalable web and mobile applications across diverse
-            industries. Skilled in both frontend and backend development, I
-            specialize in JavaScript, TypeScript, React, Node.js, and
-            Python/Django, with additional expertise in Java, PHP, and cloud
-            platforms like AWS and Azure. My career spans leading technical
-            strategy as CTO in startups, pioneering AI-driven applications at
-            Grundfos, and architecting solutions from concept to production in
-            agile environments. I’m passionate about clean code, emerging
-            technologies, and continuous improvement, with a proven track record
-            of mentoring teams, driving innovation, and delivering high-quality
-            solutions that create real impact.
+            I am a Full-stack Developer with 12+ years of experience building
+            scalable, high-impact applications across startups and global
+            enterprises. Proven track record of leading teams, delivering
+            complex web applications, and driving innovation with emerging
+            technologies (AI, 3D visualization, cloud platforms). Strong
+            expertise in React, TypeScript, and modern UI frameworks, with
+            hands-on leadership in mentoring engineers, shaping product
+            strategy, and optimizing development processes. Adept at translating
+            ideas into production-ready applications that improve efficiency,
+            enhance customer experience, and generate measurable business value.
           </p>
           <section className="title-section">
             <h2 className="header">EXPERIENCE</h2>
