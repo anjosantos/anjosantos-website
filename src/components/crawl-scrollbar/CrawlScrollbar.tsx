@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 
 import "./crawl-scrollbar.css";
+import { start } from "repl";
+import { ol } from "framer-motion/client";
 
 type CrawlScrollBarProps = {
   children: React.ReactNode;
@@ -158,36 +160,31 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
     return () => container.removeEventListener("wheel", onWheel);
   }, [scrollHeight]);
 
-  // Swipe scroll inside content (mobile finger scroll)
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    let startY = 0;
-    let startPercent = 0;
+    const startYRef = { value: 0 };
+    const startPercentRef = { value: 0 };
 
     const onTouchStart = (e: TouchEvent) => {
       if (e.touches.length !== 1) return;
-      startY = e.touches[0].clientY;
-      startPercent = scrollPercent;
+      startYRef.value = e.touches[0].clientY;
+      startPercentRef.value = scrollPercent;
     };
 
     const onTouchMove = (e: TouchEvent) => {
       if (e.touches.length !== 1) return;
       e.preventDefault();
 
-      const delta = startY - e.touches[0].clientY; // swipe up = scroll down
+      const delta = startYRef.value - e.touches[0].clientY; // swipe up = scroll down
       const visible = container.clientHeight;
       const scrollable = scrollHeight - visible;
       if (scrollable <= 0) return;
 
-      const deltaPercent = (delta / visible) * (visible / scrollHeight) * 100;
+      const deltaPercent = (delta / visible) * (visible / scrollHeight) * 50;
 
-      const newPercent = Math.min(
-        100,
-        Math.max(0, startPercent + deltaPercent * 10)
-      );
-      setScrollPercent(newPercent);
+      setScrollPercent((oldPercent) => oldPercent + deltaPercent);
     };
 
     container.addEventListener("touchstart", onTouchStart, { passive: false });
@@ -197,7 +194,7 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
       container.removeEventListener("touchstart", onTouchStart);
       container.removeEventListener("touchmove", onTouchMove);
     };
-  }, [scrollHeight, scrollPercent]);
+  }, [scrollHeight]);
 
   return (
     <div
