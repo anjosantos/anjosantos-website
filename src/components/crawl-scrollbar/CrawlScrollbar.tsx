@@ -180,7 +180,7 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
       const scrollable = scrollHeight - visible;
       if (scrollable <= 0) return;
 
-      const deltaPercent = (delta / visible) * (visible / scrollHeight) * 50;
+      const deltaPercent = (delta / visible) * (visible / scrollHeight) * 20;
 
       setScrollPercent((oldPercent) => oldPercent + deltaPercent);
     };
