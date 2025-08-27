@@ -1,3 +1,14 @@
+.full-overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .overlay-label {
   display: block;
   font-family: "DsDigital";

@@ -18,21 +18,8 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
   const { pageContext } = usePage();
   const { activeKey, setActiveKey, setIsReferencesOpen } = pageContext;
 
-  const overlayStyle = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "transparent",
-    width: "100vw",
-    height: "100vh",
-    zIndex: 1,
-    pointerEvents: "none",
-  } as React.CSSProperties;
-
   return (
-    <section style={overlayStyle}>
+    <section className="full-overlay-container">
       {
         <section>
           <div
