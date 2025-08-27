@@ -32,7 +32,6 @@ const FullOverlay: React.FC<FullOverlayProps> = () => {
         className="transition"
       ></div>
       <FullOverlayContainer width={210} position={1}>
-        <b style={{ color: "white" }}>EH</b>
         <HeaderOverlay
           isVisible={
             activeKey === PageKeys.HOME ||

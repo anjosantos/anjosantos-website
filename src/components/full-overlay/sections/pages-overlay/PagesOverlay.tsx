@@ -1,6 +1,7 @@
+import { motion, AnimatePresence } from "framer-motion";
+
 import { PageKeys } from "@/pages/grid-pages";
 import { OverlaySection } from "@/components";
-import { motion, AnimatePresence } from "framer-motion";
 
 type PagesOverlayContainerProps = {
   activeKey: PageKeys;
@@ -15,7 +16,6 @@ const PagesOverlayContainer: React.FC<PagesOverlayContainerProps> = ({
     <AnimatePresence>
       {isVisible && (
         <motion.section
-          className="hidable"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}

@@ -1,7 +1,14 @@
+.back-button-container {
+  width: 75px;
+}
+
 .back-button {
   all: unset;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+.back-button .overlay-value {
+  font-size: 16px;
 }
 
 .back-button:hover {
@@ -18,4 +25,13 @@
 
 .arrow-left {
   margin-right: 10px;
+}
+
+@media (min-width: 576px) {
+  .back-button-container {
+    width: 100px;
+  }
+  .back-button .overlay-value {
+    font-size: 24px;
+  }
 }
