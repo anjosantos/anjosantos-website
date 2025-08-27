@@ -1,7 +1,7 @@
 import React, { useState, useEffect, type JSX } from "react";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, Environment } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 import { usePage } from "@/providers";
@@ -109,12 +109,6 @@ const Home: React.FC = () => {
         <Canvas eventPrefix="client">
           <React.Suspense fallback={null}>
             <CameraRig position={cameraSettings.position} />
-            <Environment
-              files="/three_d/nebulae.jpg"
-              background
-              environmentIntensity={0.5}
-              backgroundIntensity={2}
-            />
             <ambientLight intensity={0.7} />
             <spotLight
               intensity={0.5}
