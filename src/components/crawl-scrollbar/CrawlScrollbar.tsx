@@ -31,7 +31,7 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (rotation == 0) {
+    if (rotation === 0) {
       const container = containerRef.current;
       const content = contentRef.current;
       if (!container || !content) return;
@@ -40,7 +40,7 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
 
       const visible = container.clientHeight;
       const total = content.scrollHeight;
-      if (visible == total) return;
+      if (visible === total) return;
       setScrollHeight(total + (total - visible));
 
       const ratio = visible / total;
@@ -65,7 +65,7 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
     setThumbTop((scrollPercent / 100) * maxThumbTop);
   }, [scrollPercent, scrollHeight, thumbHeight]);
 
-  // Thumb drag logic
+  // Thumb drag logic (mouse + touch)
   useEffect(() => {
     const thumb = thumbRef.current;
     const container = containerRef.current;
@@ -74,16 +74,18 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
     let startY = 0;
     let startPercent = 0;
 
-    const onMouseDown = (e: MouseEvent) => {
-      startY = e.clientY;
+    const onStart = (clientY: number) => {
+      startY = clientY;
       startPercent = scrollPercent;
       document.addEventListener("mousemove", onMouseMove);
       document.addEventListener("mouseup", onMouseUp);
+      document.addEventListener("touchmove", onTouchMove, { passive: false });
+      document.addEventListener("touchend", onTouchEnd);
       thumb.style.cursor = "grabbing";
     };
 
-    const onMouseMove = (e: MouseEvent) => {
-      const delta = e.clientY - startY;
+    const onMove = (clientY: number) => {
+      const delta = clientY - startY;
       const visible = container.clientHeight;
       const maxThumbTop = visible - thumbHeight;
 
@@ -95,14 +97,42 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
       setScrollPercent(newPercent);
     };
 
+    // Mouse
+    const onMouseDown = (e: MouseEvent) => {
+      onStart(e.clientY);
+    };
+    const onMouseMove = (e: MouseEvent) => {
+      onMove(e.clientY);
+    };
     const onMouseUp = () => {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("touchmove", onTouchMove);
+      document.removeEventListener("touchend", onTouchEnd);
       thumb.style.cursor = "grab";
     };
 
+    // Touch
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+      onStart(e.touches[0].clientY);
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+      e.preventDefault();
+      onMove(e.touches[0].clientY);
+    };
+    const onTouchEnd = () => {
+      onMouseUp();
+    };
+
     thumb.addEventListener("mousedown", onMouseDown);
-    return () => thumb.removeEventListener("mousedown", onMouseDown);
+    thumb.addEventListener("touchstart", onTouchStart, { passive: false });
+
+    return () => {
+      thumb.removeEventListener("mousedown", onMouseDown);
+      thumb.removeEventListener("touchstart", onTouchStart);
+    };
   }, [scrollPercent, thumbHeight]);
 
   // Wheel override
@@ -127,6 +157,47 @@ const CrawlScrollBar: React.FC<CrawlScrollBarProps> = ({ children }) => {
     container.addEventListener("wheel", onWheel, { passive: false });
     return () => container.removeEventListener("wheel", onWheel);
   }, [scrollHeight]);
+
+  // Swipe scroll inside content (mobile finger scroll)
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let startY = 0;
+    let startPercent = 0;
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+      startY = e.touches[0].clientY;
+      startPercent = scrollPercent;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+      e.preventDefault();
+
+      const delta = startY - e.touches[0].clientY; // swipe up = scroll down
+      const visible = container.clientHeight;
+      const scrollable = scrollHeight - visible;
+      if (scrollable <= 0) return;
+
+      const deltaPercent = (delta / visible) * (visible / scrollHeight) * 100;
+
+      const newPercent = Math.min(
+        100,
+        Math.max(0, startPercent + deltaPercent * 10)
+      );
+      setScrollPercent(newPercent);
+    };
+
+    container.addEventListener("touchstart", onTouchStart, { passive: false });
+    container.addEventListener("touchmove", onTouchMove, { passive: false });
+
+    return () => {
+      container.removeEventListener("touchstart", onTouchStart);
+      container.removeEventListener("touchmove", onTouchMove);
+    };
+  }, [scrollHeight, scrollPercent]);
 
   return (
     <div
