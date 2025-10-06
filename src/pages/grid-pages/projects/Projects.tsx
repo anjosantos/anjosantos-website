@@ -17,6 +17,7 @@ enum ProjectKeys {
   SCOUTBEES = "scoutbees",
   BUKIDFRESH = "bukidfresh",
   GEMHEAD = "gemhead",
+  PERAMIHIN = "peramihin",
 }
 
 type Project = {
@@ -33,6 +34,20 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
       label: "ScoutBees",
       pills: ["Python", "Django", "ReactJS", "TypeScript", "Storybook"],
       body: "ScoutBees is a startup initiative designed to help international students securely find rental properties overseas. I led the company’s overall technical strategy—overseeing research, development, quality assurance, and deployment—which resulted in a polished MVP web application and laid the foundation for future growth.",
+    },
+    {
+      key: ProjectKeys.PERAMIHIN,
+      label: "Peramihin",
+      pills: [
+        "Next.js",
+        "AWS Cognito",
+        "AWS API Gateway",
+        "AWS Lambda",
+        "AWS DynamoDB",
+        "AWS S3",
+        "AWS Textract",
+      ],
+      body: "PERAMIHIN is a smart expense tracker web app built with Next.js and AWS serverless technologies. Its name is a play on Filipino words: “Pera” (Money) + “Paramihin” (To Multiply) — because who doesn’t want their money to grow? Simply upload a receipt image, and using AWS Textract, it automatically extracts key details like totals, dates, and items, storing everything securely in DynamoDB and S3.",
     },
     {
       key: ProjectKeys.BUKIDFRESH,
@@ -57,6 +72,10 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
     "/images/bukidfresh-page.png"
   );
   const gemheadTexture = useLoader(TextureLoader, "/images/gemhead-page.png");
+  const peramihinTexture = useLoader(
+    TextureLoader,
+    "/images/peramihin-page.png"
+  );
   const [selectedTexture, setSelectedTexture] =
     useState<THREE.Texture>(scoutBeesTexture);
 
@@ -86,6 +105,9 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
         break;
       case ProjectKeys.GEMHEAD:
         setSelectedTexture(gemheadTexture);
+        break;
+      case ProjectKeys.PERAMIHIN:
+        setSelectedTexture(peramihinTexture);
         break;
     }
   }, [selectedProject.key]);
